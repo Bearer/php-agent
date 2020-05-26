@@ -1,0 +1,36 @@
+{
+    "name": "bearer/php-agent",
+    "description": "Bearer PHP Agent",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Bearer Team",
+            "email": "engineering@bearer.sh"
+        }
+    ],
+    "license": "MIT",
+    "version": "1.0",
+    "require": {
+        "php": ">=7.1.0",
+        "ext-curl": "*",
+        "ext-runkit7": "*",
+        "ext-json": "*",
+        "symfony/options-resolver": "^4",
+        "spatie/async": "^1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7",
+        "symfony/var-dumper": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bearer\\Sh\\": "."
+        },
+        "exclude-from-classmap": ["./tests"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bearer\\Sh\\Test\\": "./tests/"
+        }
+    }
+}
