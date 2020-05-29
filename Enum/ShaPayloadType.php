@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Enum;
+namespace Bearer\Enum;
 
 /**
  * Class ShaPayloadType
- * @package Bearer\Sh\Enum
+ * @package Bearer\Enum
  */
 class ShaPayloadType extends Enum
 {

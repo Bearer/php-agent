@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Model\Filters;
+namespace Bearer\Model\Filters;
 
-use Bearer\Sh\Enum\FilterType;
-use Bearer\Sh\Model\RegularExpression;
-use Bearer\Sh\Model\ReportLog;
+use Bearer\Enum\FilterType;
+use Bearer\Model\RegularExpression;
+use Bearer\Model\ReportLog;
 
 /**
  * Class PathFilter
- * @package Bearer\Sh\Model\Filters
+ * @package Bearer\Model\Filters
  */
 class PathFilter extends Filter
 {

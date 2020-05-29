@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Model\RegularExpression;
+use Bearer\Model\RegularExpression;
 
 /**
  * Class RegularExpressionFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class RegularExpressionFactory
 {

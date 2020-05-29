@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Sanitizer;
+namespace Bearer\Sanitizer;
 
 /**
  * Class BodySanitizer
- * @package Bearer\Sh\Sanitizer\Handler
+ * @package Bearer\Sanitizer\Handler
  */
 class BodySanitizer extends AbstractSanitizeHandler
 {
@@ -27,17 +27,15 @@ class BodySanitizer extends AbstractSanitizeHandler
 			$data = gzdecode($data);
 		}
 
+		if(is_string($data) && !ctype_print($data)) {
+			$data = "(not showing binary data)";
+		}
+
 		$type = $this->getHeaderValue($headers, 'content-type');
 
 		json_decode($data);
 		if (json_last_error() === JSON_ERROR_NONE) {
 			$type = "application/json";
-		} else {
-			parse_str($data, $parsed_data);
-			if (!empty(array_filter($parsed_data))) {
-				$type = "x-www-form-urlencoded";
-				$data = $parsed_data;
-			}
 		}
 
 		if ($type !== null) {
@@ -50,6 +48,7 @@ class BodySanitizer extends AbstractSanitizeHandler
 		}
 
 		$data = $this->filter($data);
+
 		return is_array($data) ? json_encode($data, JSON_NUMERIC_CHECK) : $data;
 	}
 

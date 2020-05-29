@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Test;
+namespace Bearer\Test;
 
-use Bearer\Sh\AgentHandlerFactory;
+use Bearer\AgentHandlerFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AgentHandlerFactoryTest
- * @package Bearer\Sh\Test
+ * @package Bearer\Test
  */
 class AgentHandlerFactoryTest extends TestCase
 {

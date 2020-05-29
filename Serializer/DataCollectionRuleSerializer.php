@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Model\DataCollectionRule;
+use Bearer\Model\DataCollectionRule;
 
 /**
  * Class DataCollectionRuleSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class DataCollectionRuleSerializer
 {

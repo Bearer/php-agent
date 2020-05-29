@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Model\Runtime;
+use Bearer\Model\Runtime;
 
 /**
  * Class RuntimeFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class RuntimeFactory
 {

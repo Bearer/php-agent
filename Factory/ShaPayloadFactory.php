@@ -1,21 +1,21 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
 
-use Bearer\Sh\Model\ShaPayload\AbstractShaPayloadType;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadObjectKey;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeArray;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeBoolean;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeNull;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeNumber;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeObject;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeString;
-use Bearer\Sh\Serializer\ShaPayloadSerializer;
+use Bearer\Model\ShaPayload\AbstractShaPayloadType;
+use Bearer\Model\ShaPayload\ShaPayloadObjectKey;
+use Bearer\Model\ShaPayload\ShaPayloadTypeArray;
+use Bearer\Model\ShaPayload\ShaPayloadTypeBoolean;
+use Bearer\Model\ShaPayload\ShaPayloadTypeNull;
+use Bearer\Model\ShaPayload\ShaPayloadTypeNumber;
+use Bearer\Model\ShaPayload\ShaPayloadTypeObject;
+use Bearer\Model\ShaPayload\ShaPayloadTypeString;
+use Bearer\Serializer\ShaPayloadSerializer;
 
 /**
  * Class ShaPayloadFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class ShaPayloadFactory
 {

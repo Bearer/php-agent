@@ -1,17 +1,17 @@
 <?php
 
-namespace Bearer\Sh\Handler\Multi;
+namespace Bearer\Handler\Multi;
 
-use Bearer\Sh\Async\AsyncClient;
-use Bearer\Sh\Async\Task\HandlerEventTask;
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Request\CurlResponse;
-use Bearer\Sh\Handler\AbstractHandler;
-use Bearer\Sh\DataStorage\CurlDataStorage;
+use Bearer\Async\AsyncClient;
+use Bearer\Async\Task\HandlerEventTask;
+use Bearer\Request\CurlRequest;
+use Bearer\Request\CurlResponse;
+use Bearer\Handler\AbstractHandler;
+use Bearer\DataStorage\CurlDataStorage;
 
 /**
  * Class MultiCloseHandler
- * @package Bearer\Sh\Handler\Multi
+ * @package Bearer\Handler\Multi
  */
 class MultiExecHandler extends AbstractHandler
 {

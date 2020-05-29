@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Model\Configuration;
+use Bearer\Model\Configuration;
 
 /**
  * Class ConfigurationSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class ConfigurationSerializer
 {

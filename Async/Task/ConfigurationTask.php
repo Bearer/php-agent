@@ -1,15 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Async\Task;
+namespace Bearer\Async\Task;
 
-use Bearer\Sh\Factory\ModelSerializer;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\ObjectTransformer;
-use Bearer\Sh\Serializer\ConfigurationSerializer;
+use Bearer\Model\Configuration;
+use Bearer\Serializer\ConfigurationSerializer;
 
 /**
  * Class ConfigurationTask
- * @package Bearer\Sh\Async\Task
+ * @package Bearer\Async\Task
  */
 class ConfigurationTask extends AbstractAsyncTask
 {

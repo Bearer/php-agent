@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Model\ShaPayload;
+namespace Bearer\Model\ShaPayload;
 
-use Bearer\Sh\Enum\ShaPayloadType;
+use Bearer\Enum\ShaPayloadType;
 
 /**
  * Class ShaPayloadTypeObject
- * @package Bearer\Sh\Model\ShaPayload
+ * @package Bearer\Model\ShaPayload
  */
 class ShaPayloadTypeObject extends AbstractShaPayloadType
 {

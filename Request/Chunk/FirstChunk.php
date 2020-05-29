@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Request\Chunk;
+namespace Bearer\Request\Chunk;
 
 /**
  * Class FirstChunk
- * @package Bearer\Sh\Request\Chunk
+ * @package Bearer\Request\Chunk
  */
 class FirstChunk extends DataChunk
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Handler;
+namespace Bearer\Handler;
 
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Request\CurlResponse;
-use Bearer\Sh\Handler\Traits\CurlResponseListener;
+use Bearer\Request\CurlRequest;
+use Bearer\Request\CurlResponse;
+use Bearer\Handler\Traits\CurlResponseListener;
 
 /**
  * Class ExecHandler
- * @package Bearer\Sh\Handler
+ * @package Bearer\Handler
  */
 class ExecHandler extends AbstractHandler
 {

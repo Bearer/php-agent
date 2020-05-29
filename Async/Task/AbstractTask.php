@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Async\Task;
+namespace Bearer\Async\Task;
 
 /**
  * Class AbstractTask
- * @package Bearer\Sh\Async\Task
+ * @package Bearer\Async\Task
  */
 abstract class AbstractTask
 {

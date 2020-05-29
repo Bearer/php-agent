@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Model\DynamicConfig;
+use Bearer\Model\DynamicConfig;
 
 /**
  * Class DynamicConfigFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class DynamicConfigFactory
 {

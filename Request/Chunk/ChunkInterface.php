@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Request\Chunk;
+namespace Bearer\Request\Chunk;
 
 /**
  * Interface ChunkInterface
- * @package Bearer\Sh\Request\Chunk
+ * @package Bearer\Request\Chunk
  */
 interface ChunkInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Model;
+namespace Bearer\Model;
 
 /**
  * Class ReportLog
- * @package Bearer\Sh\Model
+ * @package Bearer\Model
  */
 class ReportLog
 {

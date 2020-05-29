@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Request;
+namespace Bearer\Request;
 
 /**
  * Class CurlRequest
- * @package Bearer\Sh\Curl
+ * @package Bearer\Curl
  */
 class CurlRequest
 {

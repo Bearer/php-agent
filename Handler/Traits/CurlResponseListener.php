@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Handler\Traits;
+namespace Bearer\Handler\Traits;
 
-use Bearer\Sh\Request\CurlRequest;
+use Bearer\Request\CurlRequest;
 
 /**
  * Class CurlResponseListener
- * @package Bearer\Sh\Handler\Traits
+ * @package Bearer\Handler\Traits
  */
 trait CurlResponseListener
 {

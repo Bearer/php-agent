@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Model\Runtime;
-use Bearer\Sh\Factory\RuntimeFactory;
+use Bearer\Model\Runtime;
+use Bearer\Factory\RuntimeFactory;
 
 /**
  * Class RuntimeSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class RuntimeSerializer
 {

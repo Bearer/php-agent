@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Sanitizer;
+namespace Bearer\Sanitizer;
 
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Sanitizer\Filter\KeyFilter;
-use Bearer\Sh\Sanitizer\Filter\ValueFilter;
+use Bearer\Model\Configuration;
+use Bearer\Sanitizer\Filter\KeyFilter;
+use Bearer\Sanitizer\Filter\ValueFilter;
 
 /**
  * Class AbstractSanitizer
- * @package Bearer\Sh\Sanitizer\Handler
+ * @package Bearer\Sanitizer\Handler
  */
 abstract class AbstractSanitizeHandler
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Model\Agent;
+use Bearer\Model\Agent;
 
 /**
  * Class AgentFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class AgentFactory
 {

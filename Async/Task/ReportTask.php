@@ -1,19 +1,19 @@
 <?php
 
-namespace Bearer\Sh\Async\Task;
+namespace Bearer\Async\Task;
 
-use Bearer\Sh\Factory\ModelFactory;
-use Bearer\Sh\Factory\ModelSerializer;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Factory\ConfigurationFactory;
-use Bearer\Sh\Factory\ReportFactory;
-use Bearer\Sh\ObjectTransformer;
-use Bearer\Sh\Serializer\ReportSerializer;
+use Bearer\Factory\ConfigurationFactory;
+use Bearer\Factory\ModelFactory;
+use Bearer\Factory\ModelSerializer;
+use Bearer\Factory\ReportFactory;
+use Bearer\Model\Configuration;
+use Bearer\ObjectTransformer;
+use Bearer\Request\CurlRequest;
+use Bearer\Serializer\ReportSerializer;
 
 /**
  * Class ReportTask
- * @package Bearer\Sh\Async\Task
+ * @package Bearer\Async\Task
  */
 class ReportTask extends AbstractTask
 {
@@ -42,7 +42,10 @@ class ReportTask extends AbstractTask
 				->run();
 		}
 
-		(new ConfigurationFactory())(ConfigurationTask::get()->getData(), Configuration::get());
+		$configuration_data = ConfigurationTask::get()->getData();
+		if ($configuration_data !== null) {
+			(new ConfigurationFactory())($configuration_data, Configuration::get());
+		}
 	}
 
 	/**

@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Async;
+namespace Bearer\Async;
 
 use Spatie\Async\Task;
 
 /**
  * Class Pool
- * @package Bearer\Sh\Async
+ * @package Bearer\Async
  */
 class Pool extends \Spatie\Async\Pool
 {

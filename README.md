@@ -35,7 +35,7 @@ Now, open your application main script (e.g. `index.php`) and initialize the Bea
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-\Bearer\Sh\Agent::init([
+\Bearer\Agent::init([
     'secretKey' => 'YOUR_BEARER_SECRET_KEY'
 ]);
 ```
@@ -55,7 +55,7 @@ We think it's best to setup the sanitization level that best suits your needs.
 An example using the default values is as follows:
 
 ```php
-\Bearer\Sh\Agent::init([
+\Bearer\Agent::init([
   "stripSensitiveData" => true,
   "stripSensitiveKeys" => "/^authorization$|^client.id$|^access.token$|^client.secret$/i",
   "stripSensitiveRegex" => "[a-z0-9]{1}[a-z0-9.!#$%&’*+=?^_`{|}~-]+@[a-z0-9-]+(?:\\.[a-z0-9-]+)*"

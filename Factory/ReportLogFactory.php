@@ -1,19 +1,19 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Enum\LogLevel;
-use Bearer\Sh\Enum\ReportLogType;
-use Bearer\Sh\Enum\StageType;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Model\DataCollectionRule;
-use Bearer\Sh\Model\ReportLog;
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Serializer\ShaPayloadSerializer;
+use Bearer\Enum\LogLevel;
+use Bearer\Enum\ReportLogType;
+use Bearer\Enum\StageType;
+use Bearer\Model\Configuration;
+use Bearer\Model\DataCollectionRule;
+use Bearer\Model\ReportLog;
+use Bearer\Request\CurlRequest;
+use Bearer\Serializer\ShaPayloadSerializer;
 
 /**
  * Class ReportLogFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class ReportLogFactory
 {
@@ -27,7 +27,7 @@ class ReportLogFactory
 
 		$log = new ReportLog();
 
-		$log->setLogLevel(LogLevel::RESTRICTED);
+		$log->setLogLevel(LogLevel::DETECTED);
 		$log->setStartedAt($response->getStartTime());
 		$log->setEndedAt($response->getEndTime());
 
@@ -48,7 +48,7 @@ class ReportLogFactory
 
 		$log->setRequestBody($response->getRequestBody());
 		$log->setResponseBody($response->getResponseBody());
-		
+
 		$log->setRequestBodyPayloadSha((new ShaPayloadFactory())($log->getRequestBody()));
 		$log->setResponseBodyPayloadSha((new ShaPayloadFactory())($log->getResponseBody()));
 

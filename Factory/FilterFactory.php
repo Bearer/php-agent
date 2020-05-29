@@ -1,23 +1,23 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Enum\FilterType;
-use Bearer\Sh\Model\Filters\ConnectionErrorFilter;
-use Bearer\Sh\Model\Filters\DomainFilter;
-use Bearer\Sh\Model\Filters\Filter;
-use Bearer\Sh\Model\Filters\HttpMethodFilter;
-use Bearer\Sh\Model\Filters\NotFilter;
-use Bearer\Sh\Model\Filters\ParamFilter;
-use Bearer\Sh\Model\Filters\PathFilter;
-use Bearer\Sh\Model\Filters\RequestHeaderFilter;
-use Bearer\Sh\Model\Filters\ResponseHeaderFilter;
-use Bearer\Sh\Model\Filters\SetFilter;
-use Bearer\Sh\Model\Filters\StatusCodeFilter;
+use Bearer\Enum\FilterType;
+use Bearer\Model\Filters\ConnectionErrorFilter;
+use Bearer\Model\Filters\DomainFilter;
+use Bearer\Model\Filters\Filter;
+use Bearer\Model\Filters\HttpMethodFilter;
+use Bearer\Model\Filters\NotFilter;
+use Bearer\Model\Filters\ParamFilter;
+use Bearer\Model\Filters\PathFilter;
+use Bearer\Model\Filters\RequestHeaderFilter;
+use Bearer\Model\Filters\ResponseHeaderFilter;
+use Bearer\Model\Filters\SetFilter;
+use Bearer\Model\Filters\StatusCodeFilter;
 
 /**
  * Class FilterFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class FilterFactory
 {

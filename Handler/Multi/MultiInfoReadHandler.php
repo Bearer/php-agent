@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Handler\Multi;
+namespace Bearer\Handler\Multi;
 
-use Bearer\Sh\Handler\AbstractHandler;
-use Bearer\Sh\Report\ReportSender;
+use Bearer\Handler\AbstractHandler;
+use Bearer\Report\ReportSender;
 
 /**
  * Class MultiInfoReadHandler
- * @package Bearer\Sh\Handler\Multi
+ * @package Bearer\Handler\Multi
  */
 class MultiInfoReadHandler extends AbstractHandler
 {

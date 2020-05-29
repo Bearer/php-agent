@@ -1,16 +1,16 @@
 <?php
 
-namespace Bearer\Sh\Request;
+namespace Bearer\Request;
 
-use Bearer\Sh\Request\Chunk\DataChunk;
-use Bearer\Sh\Request\Chunk\ErrorChunk;
-use Bearer\Sh\Request\Chunk\FirstChunk;
-use Bearer\Sh\Request\Chunk\LastChunk;
-use Bearer\Sh\Exception\TransportException;
+use Bearer\Request\Chunk\DataChunk;
+use Bearer\Request\Chunk\ErrorChunk;
+use Bearer\Request\Chunk\FirstChunk;
+use Bearer\Request\Chunk\LastChunk;
+use Bearer\Exception\TransportException;
 
 /**
  * Trait ResponseTrait
- * @package Bearer\Sh\Curl
+ * @package Bearer\Curl
  */
 trait ResponseTrait
 {
@@ -73,7 +73,7 @@ trait ResponseTrait
 				return $content;
 			}
 
-			if ('HEAD' === $this->http_method || \in_array($this->http_code, [204, 304], true)) {
+			if ('HEAD' === $this->http_method) {
 				return '';
 			}
 

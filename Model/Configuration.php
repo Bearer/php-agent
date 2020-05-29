@@ -1,9 +1,9 @@
 <?php
 
-namespace Bearer\Sh\Model;
+namespace Bearer\Model;
 
-use Bearer\Sh\AgentConfigurationResolver;
-use Bearer\Sh\Model\Filters\Filter;
+use Bearer\AgentConfigurationResolver;
+use Bearer\Model\Filters\Filter;
 
 /**
  * Class Configuration

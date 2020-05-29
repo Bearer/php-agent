@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Model\Report;
+use Bearer\Model\Report;
 
 /**
  * Class ReportSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class ReportSerializer
 {

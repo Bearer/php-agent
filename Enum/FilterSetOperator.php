@@ -1,6 +1,6 @@
 <?php
 
-namespace Bearer\Sh\Enum;
+namespace Bearer\Enum;
 
 class FilterSetOperator extends Enum
 {

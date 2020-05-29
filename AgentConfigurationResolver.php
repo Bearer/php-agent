@@ -1,17 +1,17 @@
 <?php
 
-namespace Bearer\Sh;
+namespace Bearer;
 
-use Bearer\Sh\Enum\FilterType;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Factory\ConfigurationFactory;
-use Bearer\Sh\ObjectTransformer;
+use Bearer\Enum\FilterType;
+use Bearer\Model\Configuration;
+use Bearer\Factory\ConfigurationFactory;
+use Bearer\ObjectTransformer;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AgentConfigurationResolver
- * @package Bearer\Sh
+ * @package Bearer
  */
 class AgentConfigurationResolver
 {

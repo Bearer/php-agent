@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Handler;
+namespace Bearer\Handler;
 
-use Bearer\Sh\Async\Task\ReportTask;
+use Bearer\Async\Task\ReportTask;
 
 /**
  * Interface AbstractHandler
- * @package Bearer\Sh\Handler
+ * @package Bearer\Handler
  */
 abstract class AbstractHandler
 {

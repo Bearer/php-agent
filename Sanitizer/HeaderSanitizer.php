@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Sanitizer;
+namespace Bearer\Sanitizer;
 
 /**
  * Class HeaderSanitizer
- * @package Bearer\Sh\Sanitizer\Handler
+ * @package Bearer\Sanitizer\Handler
  */
 class HeaderSanitizer extends AbstractSanitizeHandler
 {

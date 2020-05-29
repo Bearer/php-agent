@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Exception;
+namespace Bearer\Exception;
 
 /**
  * Class TransportException
- * @package Bearer\Sh\Exception
+ * @package Bearer\Exception
  */
 class TransportException extends \RuntimeException
 {

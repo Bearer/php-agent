@@ -1,18 +1,18 @@
 <?php
 
-namespace Bearer\Sh\Test\Factory;
+namespace Bearer\Test\Factory;
 
-use Bearer\Sh\Factory\ShaPayloadFactory;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeArray;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeBoolean;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeNull;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeObject;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadTypeString;
+use Bearer\Factory\ShaPayloadFactory;
+use Bearer\Model\ShaPayload\ShaPayloadTypeArray;
+use Bearer\Model\ShaPayload\ShaPayloadTypeBoolean;
+use Bearer\Model\ShaPayload\ShaPayloadTypeNull;
+use Bearer\Model\ShaPayload\ShaPayloadTypeObject;
+use Bearer\Model\ShaPayload\ShaPayloadTypeString;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ShaPayloadFactoryTest
- * @package Bearer\Sh\Test\Factory
+ * @package Bearer\Test\Factory
  */
 class ShaPayloadFactoryTest extends TestCase
 {

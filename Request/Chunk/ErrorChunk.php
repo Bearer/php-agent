@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Request\Chunk;
+namespace Bearer\Request\Chunk;
 
-use Bearer\Sh\Exception\TransportException;
+use Bearer\Exception\TransportException;
 
 /**
  * Class ErrorChunk
- * @package Bearer\Sh\Request\Chunk
+ * @package Bearer\Request\Chunk
  */
 class ErrorChunk implements ChunkInterface
 {
