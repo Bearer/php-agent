@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Model\Filters;
+namespace Bearer\Model\Filters;
 
-use Bearer\Sh\Enum\FilterType;
-use Bearer\Sh\Enum\ReportLogType;
-use Bearer\Sh\Model\ReportLog;
+use Bearer\Enum\FilterType;
+use Bearer\Enum\ReportLogType;
+use Bearer\Model\ReportLog;
 
 /**
  * Class ConnectionErrorFilter

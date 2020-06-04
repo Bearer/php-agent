@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Model\ShaPayload\AbstractShaPayloadType;
-use Bearer\Sh\Model\ShaPayload\ShaPayload;
-use Bearer\Sh\Model\ShaPayload\ShaPayloadObjectKey;
+use Bearer\Model\ShaPayload\AbstractShaPayloadType;
+use Bearer\Model\ShaPayload\ShaPayload;
+use Bearer\Model\ShaPayload\ShaPayloadObjectKey;
 
 /**
  * Class ShaPayloadSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class ShaPayloadSerializer
 {

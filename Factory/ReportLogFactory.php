@@ -1,18 +1,18 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Enum\LogLevel;
-use Bearer\Sh\Enum\ReportLogType;
-use Bearer\Sh\Enum\StageType;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Model\DataCollectionRule;
-use Bearer\Sh\Model\ReportLog;
-use Bearer\Sh\Request\CurlRequest;
+use Bearer\Enum\LogLevel;
+use Bearer\Enum\ReportLogType;
+use Bearer\Enum\StageType;
+use Bearer\Model\Configuration;
+use Bearer\Model\DataCollectionRule;
+use Bearer\Model\ReportLog;
+use Bearer\Request\CurlRequest;
 
 /**
  * Class ReportLogFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class ReportLogFactory
 {

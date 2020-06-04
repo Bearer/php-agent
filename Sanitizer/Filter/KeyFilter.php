@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Sanitizer\Filter;
+namespace Bearer\Sanitizer\Filter;
 
-use Bearer\Sh\Model\Configuration;
+use Bearer\Model\Configuration;
 
 /**
  * Trait KeyFilter
- * @package Bearer\Sh\Sanitizer\Filter
+ * @package Bearer\Sanitizer\Filter
  */
 trait KeyFilter
 {

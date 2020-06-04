@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Model\ShaPayload;
+namespace Bearer\Model\ShaPayload;
 
 /**
  * Class ShaPayload
- * @package Bearer\Sh\Model\ShaPayload
+ * @package Bearer\Model\ShaPayload
  */
 class ShaPayload
 {

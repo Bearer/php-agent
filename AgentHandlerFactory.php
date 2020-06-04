@@ -1,21 +1,21 @@
 <?php
 
-namespace Bearer\Sh;
+namespace Bearer;
 
-use Bearer\Sh\Handler\AbstractHandler;
-use Bearer\Sh\Handler\ExecHandler;
-use Bearer\Sh\Handler\Multi\MultiAddHandleHandler;
-use Bearer\Sh\Handler\Multi\MultiCloseHandler;
-use Bearer\Sh\Handler\Multi\MultiExecHandler;
-use Bearer\Sh\Handler\Multi\MultiInfoReadHandler;
-use Bearer\Sh\Handler\Multi\MultiRemoveHandleHandler;
-use Bearer\Sh\Handler\Multi\MultiSetOptHandler;
-use Bearer\Sh\Handler\SetOptArrayHandler;
-use Bearer\Sh\Handler\SetOptHandler;
+use Bearer\Handler\AbstractHandler;
+use Bearer\Handler\ExecHandler;
+use Bearer\Handler\Multi\MultiAddHandleHandler;
+use Bearer\Handler\Multi\MultiCloseHandler;
+use Bearer\Handler\Multi\MultiExecHandler;
+use Bearer\Handler\Multi\MultiInfoReadHandler;
+use Bearer\Handler\Multi\MultiRemoveHandleHandler;
+use Bearer\Handler\Multi\MultiSetOptHandler;
+use Bearer\Handler\SetOptArrayHandler;
+use Bearer\Handler\SetOptHandler;
 
 /**
  * Class AgentHandlerFactory
- * @package Bearer\Sh
+ * @package Bearer
  */
 class AgentHandlerFactory
 {

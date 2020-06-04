@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Model\Filters;
+namespace Bearer\Model\Filters;
 
-use Bearer\Sh\Enum\FilterType;
-use Bearer\Sh\Model\ReportLog;
+use Bearer\Enum\FilterType;
+use Bearer\Model\ReportLog;
 
 /**
  * Class RequestHeaderFilter
- * @package Bearer\Sh\Model\Filters
+ * @package Bearer\Model\Filters
  */
 class RequestHeaderFilter extends KeyValueFilter
 {

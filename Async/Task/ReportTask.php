@@ -1,20 +1,20 @@
 <?php
 
-namespace Bearer\Sh\Async\Task;
+namespace Bearer\Async\Task;
 
-use Bearer\Sh\Agent;
-use Bearer\Sh\Factory\ModelFactory;
-use Bearer\Sh\Factory\ModelSerializer;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Factory\ConfigurationFactory;
-use Bearer\Sh\Factory\ReportFactory;
-use Bearer\Sh\ObjectTransformer;
-use Bearer\Sh\Serializer\ReportSerializer;
+use Bearer\Agent;
+use Bearer\Factory\ConfigurationFactory;
+use Bearer\Factory\ModelFactory;
+use Bearer\Factory\ModelSerializer;
+use Bearer\Factory\ReportFactory;
+use Bearer\Model\Configuration;
+use Bearer\ObjectTransformer;
+use Bearer\Request\CurlRequest;
+use Bearer\Serializer\ReportSerializer;
 
 /**
  * Class ReportTask
- * @package Bearer\Sh\Async\Task
+ * @package Bearer\Async\Task
  */
 class ReportTask extends AbstractTask
 {
@@ -38,13 +38,16 @@ class ReportTask extends AbstractTask
 		$this->request = CurlRequest::get($ch);
 
 		if (!ConfigurationTask::get()->isLoad()) {
-			Agent::verbose('Configuration','waiting');
+			Agent::verbose('Configuration', 'waiting');
 			ConfigurationTask::get()
 				->wait()
 				->run();
 		}
 
-		(new ConfigurationFactory())(ConfigurationTask::get()->getData(), Configuration::get());
+		$configuration_data = ConfigurationTask::get()->getData();
+		if ($configuration_data !== null) {
+			(new ConfigurationFactory())($configuration_data, Configuration::get());
+		}
 	}
 
 	/**
@@ -56,10 +59,10 @@ class ReportTask extends AbstractTask
 
 		$configuration = Configuration::get();
 
-		Agent::verbose('Report', 'build',  intval($this->ch));
+		Agent::verbose('Report', 'build', intval($this->ch));
 		$report = (new ReportFactory())(CurlRequest::get($this->ch));
 
-		Agent::verbose('Report', 'serialize',  intval($this->ch));
+		Agent::verbose('Report', 'serialize', intval($this->ch));
 		$data = (new ReportSerializer())($report);
 
 		return function () use ($configuration, $data) {

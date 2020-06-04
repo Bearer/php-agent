@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Enum\LogLevel;
-use Bearer\Sh\Model\ReportLog;
+use Bearer\Enum\LogLevel;
+use Bearer\Model\ReportLog;
 
 /**
  * Class ReportLogSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class ReportLogSerializer
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Bearer\Sh;
+namespace Bearer;
 
-use Bearer\Sh\Factory\ConfigurationFactory;
-use Bearer\Sh\Model\Configuration;
+use Bearer\Factory\ConfigurationFactory;
+use Bearer\Model\Configuration;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AgentConfigurationResolver
- * @package Bearer\Sh
+ * @package Bearer
  */
 class AgentConfigurationResolver
 {
@@ -46,6 +46,6 @@ class AgentConfigurationResolver
 				->setAllowedTypes('configHost', 'string')
 				->setAllowedTypes('reportHost', 'string');
 
-		return (new ConfigurationFactory)($resolver->resolve($options));
+		return (new ConfigurationFactory())($resolver->resolve($options));
 	}
 }

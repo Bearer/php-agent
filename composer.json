@@ -24,13 +24,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Bearer\\Sh\\": "."
+            "Bearer\\": "."
         },
         "exclude-from-classmap": ["./tests"]
     },
     "autoload-dev": {
         "psr-4": {
-            "Bearer\\Sh\\Test\\": "./tests/"
+            "Bearer\\Test\\": "./tests/"
         }
     }
 }

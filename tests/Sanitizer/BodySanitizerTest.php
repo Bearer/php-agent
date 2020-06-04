@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Test\Sanitizer;
+namespace Bearer\Test\Sanitizer;
 
-use Bearer\Sh\Sanitizer\BodySanitizer;
+use Bearer\Sanitizer\BodySanitizer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class BodySanitizerTest
- * @package Bearer\Sh\Test\Sanitizer
+ * @package Bearer\Test\Sanitizer
  */
 class BodySanitizerTest extends TestCase
 {

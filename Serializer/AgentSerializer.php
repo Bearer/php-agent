@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Serializer;
+namespace Bearer\Serializer;
 
-use Bearer\Sh\Model\Agent;
-use Bearer\Sh\Factory\AgentFactory;
+use Bearer\Model\Agent;
+use Bearer\Factory\AgentFactory;
 
 /**
  * Class AgentSerializer
- * @package Bearer\Sh\Serializer
+ * @package Bearer\Serializer
  */
 class AgentSerializer
 {

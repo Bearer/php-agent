@@ -1,17 +1,17 @@
 <?php
 
-namespace Bearer\Sh\Request;
+namespace Bearer\Request;
 
-use Bearer\Sh\Request\Chunk\FirstChunk;
-use Bearer\Sh\Request\Chunk\InformationalChunk;
-use Bearer\Sh\Sanitizer\Sanitizer;
-use Bearer\Sh\ObjectTransformer;
-use Bearer\Sh\Sanitizer\BodySanitizer;
-use Bearer\Sh\Sanitizer\HeaderSanitizer;
+use Bearer\Request\Chunk\FirstChunk;
+use Bearer\Request\Chunk\InformationalChunk;
+use Bearer\Sanitizer\Sanitizer;
+use Bearer\ObjectTransformer;
+use Bearer\Sanitizer\BodySanitizer;
+use Bearer\Sanitizer\HeaderSanitizer;
 
 /**
  * Class CurlResponse
- * @package Bearer\Sh\Curl
+ * @package Bearer\Curl
  */
 class CurlResponse
 {

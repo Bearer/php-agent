@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Request\Chunk;
+namespace Bearer\Request\Chunk;
 
 /**
  * Class DataChunk
- * @package Bearer\Sh\Request\Chunk
+ * @package Bearer\Request\Chunk
  */
 class DataChunk implements ChunkInterface
 {

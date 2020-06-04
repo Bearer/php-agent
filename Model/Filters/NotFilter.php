@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Model\Filters;
+namespace Bearer\Model\Filters;
 
-use Bearer\Sh\Enum\FilterType;
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Model\ReportLog;
+use Bearer\Enum\FilterType;
+use Bearer\Model\Configuration;
+use Bearer\Model\ReportLog;
 
 /**
  * Class NotFilter

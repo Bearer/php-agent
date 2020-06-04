@@ -1,9 +1,9 @@
 <?php
 
-namespace Bearer\Sh\Test;
+namespace Bearer\Test;
 
-use Bearer\Sh\Agent;
-use Bearer\Sh\Model\Configuration;
+use Bearer\Agent;
+use Bearer\Model\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
 

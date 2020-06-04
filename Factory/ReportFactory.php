@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Model\Configuration;
-use Bearer\Sh\Model\Report;
-use Bearer\Sh\Request\CurlRequest;
+use Bearer\Model\Configuration;
+use Bearer\Model\Report;
+use Bearer\Request\CurlRequest;
 
 /**
  * Class ReportFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class ReportFactory
 {

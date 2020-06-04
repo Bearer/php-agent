@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Handler;
+namespace Bearer\Handler;
 
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\DataStorage\CurlDataStorage;
+use Bearer\Request\CurlRequest;
+use Bearer\DataStorage\CurlDataStorage;
 
 /**
  * Class SetOptArrayHandler
- * @package Bearer\Sh\Handler
+ * @package Bearer\Handler
  */
 class SetOptArrayHandler extends AbstractHandler
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Bearer\Sh\Factory;
+namespace Bearer\Factory;
 
-use Bearer\Sh\Model\DataCollectionRule;
+use Bearer\Model\DataCollectionRule;
 
 /**
  * Class DataCollectionRuleFactory
- * @package Bearer\Sh\Factory
+ * @package Bearer\Factory
  */
 class DataCollectionRuleFactory
 {

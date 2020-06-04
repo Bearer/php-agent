@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Handler\Multi;
+namespace Bearer\Handler\Multi;
 
-use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Handler\AbstractHandler;
-use Bearer\Sh\DataStorage\CurlDataStorage;
+use Bearer\Request\CurlRequest;
+use Bearer\Handler\AbstractHandler;
+use Bearer\DataStorage\CurlDataStorage;
 
 /**
  * Class MultiSetOptHandler
- * @package Bearer\Sh\Handler\Multi
+ * @package Bearer\Handler\Multi
  */
 class MultiSetOptHandler extends AbstractHandler
 {

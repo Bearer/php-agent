@@ -1,9 +1,9 @@
 <?php
 
-namespace Bearer\Sh;
+namespace Bearer;
 
-use Bearer\Sh\Async\Task\ConfigurationTask;
-use Bearer\Sh\Model\Configuration;
+use Bearer\Async\Task\ConfigurationTask;
+use Bearer\Model\Configuration;
 
 class Agent
 {

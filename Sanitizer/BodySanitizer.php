@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Sanitizer;
+namespace Bearer\Sanitizer;
 
 /**
  * Class BodySanitizer
- * @package Bearer\Sh\Sanitizer\Handler
+ * @package Bearer\Sanitizer\Handler
  */
 class BodySanitizer extends AbstractSanitizeHandler
 {
@@ -29,6 +29,10 @@ class BodySanitizer extends AbstractSanitizeHandler
 			0 === mb_strpos($data , "\x1f" . "\x8b" . "\x08")
 		) {
 			$data = gzdecode($data);
+		}
+
+		if(is_string($data) && !ctype_print($data)) {
+			$data = "(not showing binary data)";
 		}
 
 		$type = $this->getHeaderValue($headers, 'content-type');

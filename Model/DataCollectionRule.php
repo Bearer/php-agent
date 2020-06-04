@@ -1,6 +1,6 @@
 <?php
 
-namespace Bearer\Sh\Model;
+namespace Bearer\Model;
 
 /**
  * Class DataCollectionRule

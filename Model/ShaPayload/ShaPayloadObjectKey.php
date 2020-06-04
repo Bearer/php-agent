@@ -1,10 +1,10 @@
 <?php
 
-namespace Bearer\Sh\Model\ShaPayload;
+namespace Bearer\Model\ShaPayload;
 
 /**
  * Class ShaPayloadObjectKey
- * @package Bearer\Sh\Model\ShaPayload
+ * @package Bearer\Model\ShaPayload
  */
 class ShaPayloadObjectKey extends ShaPayload
 {

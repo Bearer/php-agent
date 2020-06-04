@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Test;
+namespace Bearer\Test;
 
-use Bearer\Sh\AgentConfigurationResolver;
+use Bearer\AgentConfigurationResolver;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AgentConfigurationResolverTest
- * @package Bearer\Sh\Test
+ * @package Bearer\Test
  */
 class AgentConfigurationResolverTest extends TestCase
 {

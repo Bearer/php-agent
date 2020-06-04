@@ -1,17 +1,16 @@
 <?php
 
-namespace Bearer\Sh\Request;
+namespace Bearer\Request;
 
-use Bearer\Sh\Request\Chunk\DataChunk;
-use Bearer\Sh\Request\Chunk\ErrorChunk;
-use Bearer\Sh\Request\Chunk\FirstChunk;
-use Bearer\Sh\Request\Chunk\InformationalChunk;
-use Bearer\Sh\Request\Chunk\LastChunk;
-use Bearer\Sh\Exception\TransportException;
+use Bearer\Request\Chunk\DataChunk;
+use Bearer\Request\Chunk\ErrorChunk;
+use Bearer\Request\Chunk\FirstChunk;
+use Bearer\Request\Chunk\LastChunk;
+use Bearer\Exception\TransportException;
 
 /**
  * Trait ResponseTrait
- * @package Bearer\Sh\Curl
+ * @package Bearer\Curl
  */
 trait ResponseTrait
 {
@@ -219,7 +218,7 @@ trait ResponseTrait
 				continue;
 			}
 
-			yield $response => $chunk;
+			yield $this => $chunk;
 		}
 
 		if ($chunk instanceof ErrorChunk && !$chunk->didThrow()) {

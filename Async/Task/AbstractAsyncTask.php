@@ -1,13 +1,13 @@
 <?php
 
-namespace Bearer\Sh\Async\Task;
+namespace Bearer\Async\Task;
 
-use Bearer\Sh\Agent;
-use Bearer\Sh\Async\Pool;
+use Bearer\Agent;
+use Bearer\Async\Pool;
 
 /**
  * Class AbstractAsyncTask
- * @package Bearer\Sh\Async\Task
+ * @package Bearer\Async\Task
  */
 abstract class AbstractAsyncTask extends AbstractTask
 {

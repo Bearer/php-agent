@@ -1,14 +1,14 @@
 <?php
 
-namespace Bearer\Sh\Handler\Multi;
+namespace Bearer\Handler\Multi;
 
-use Bearer\Sh\Async\AsyncClient;
-use Bearer\Sh\Async\Task\HandlerEventTask;
-use Bearer\Sh\Handler\AbstractHandler;
+use Bearer\Async\AsyncClient;
+use Bearer\Async\Task\HandlerEventTask;
+use Bearer\Handler\AbstractHandler;
 
 /**
  * Class MultiCloseHandler
- * @package Bearer\Sh\Handler\Multi
+ * @package Bearer\Handler\Multi
  */
 class MultiCloseHandler extends AbstractHandler
 {
