@@ -2,6 +2,7 @@
 
 namespace Bearer\Sh\Async\Task;
 
+use Bearer\Sh\Agent;
 use Bearer\Sh\Factory\ModelFactory;
 use Bearer\Sh\Factory\ModelSerializer;
 use Bearer\Sh\Model\Configuration;
@@ -37,6 +38,7 @@ class ReportTask extends AbstractTask
 		$this->request = CurlRequest::get($ch);
 
 		if (!ConfigurationTask::get()->isLoad()) {
+			Agent::verbose('Configuration','waiting');
 			ConfigurationTask::get()
 				->wait()
 				->run();
@@ -54,16 +56,20 @@ class ReportTask extends AbstractTask
 
 		$configuration = Configuration::get();
 
-		$data = (new ReportSerializer())(
-			(new ReportFactory())(CurlRequest::get($this->ch))
-		);
+		Agent::verbose('Report', 'build',  intval($this->ch));
+		$report = (new ReportFactory())(CurlRequest::get($this->ch));
+
+		Agent::verbose('Report', 'serialize',  intval($this->ch));
+		$data = (new ReportSerializer())($report);
 
 		return function () use ($configuration, $data) {
 			$ch = curl_init();
 			base_curl_setopt_array($ch, [
 				CURLOPT_URL => sprintf('https://%s/logs', $configuration->getReportHost()),
 				CURLOPT_POST => true,
-				CURLOPT_POSTFIELDS => json_encode($data, JSON_NUMERIC_CHECK),
+				CURLOPT_POSTFIELDS => json_encode($data,
+					JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES | JSON_HEX_QUOT | JSON_HEX_TAG | JSON_UNESCAPED_LINE_TERMINATORS | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_PRETTY_PRINT
+				),
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_FORBID_REUSE => true,
 				CURLOPT_CONNECTTIMEOUT => 10,
@@ -81,6 +87,16 @@ class ReportTask extends AbstractTask
 
 			return true;
 		};
+	}
+
+	/**
+	 * @param $output
+	 */
+	public function then($output): void
+	{
+		Agent::verbose('Report',
+			sprintf('sended : %s', intval($this->ch))
+		);
 	}
 
 	/**

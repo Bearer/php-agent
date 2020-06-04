@@ -11,6 +11,13 @@
 - [JSON](https://www.php.net/book.json)
 - [Runkit7](https://www.php.net/manual/fr/book.runkit7.php)
 
+
+# Supported
+
+Bearer PHP Agent support any curl request (single and multiples) and :
+- [Symfony HttpClient](https://github.com/symfony/http-client)
+- [Guzzle](https://github.com/guzzle/guzzle)
+
 ## Installation
 
 You need to enable the runkit7 extension:
@@ -72,3 +79,9 @@ An example using the default values is as follows:
   - In application/json response body: Any value of "authorization" key in response payload will be replaced with "[FILTERED]" (e.g., { "name": "John", "authorization": "granted" } will be sent to the Bearer dashboard as { "name": "John", "authorization": "[FILTERED]" }
 
 - `stripSensitiveRegex` - A regular expression that will be used to sanitize any _value_ in headers, query string parameters or response body. Bearer will check all the values sent in the request or response and will replace matching patterns with "[FILTERED]".
+
+### FAQ
+
+**Question:** My project already have Symfony HttpClient, need I install php curl extension ?
+
+**Answer:** Yes, Bearer Agent only handle curl requests so you need to enable the extension.

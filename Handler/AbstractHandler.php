@@ -2,6 +2,7 @@
 
 namespace Bearer\Sh\Handler;
 
+use Bearer\Sh\Agent;
 use Bearer\Sh\Async\Task\ReportTask;
 
 /**
@@ -23,6 +24,17 @@ abstract class AbstractHandler
 	 */
 	protected function report($ch): void
 	{
-		(new ReportTask($ch))->run();
+		Agent::verbose('Request', 'catched', intval($ch));
+
+		try {
+			(new ReportTask($ch))->run();
+		} catch (\Exception $e) {
+			Agent::verbose(
+				'Request',
+				sprintf('error on %s', intval($ch))
+				, $e->getMessage(),
+				true
+			);
+		}
 	}
 }

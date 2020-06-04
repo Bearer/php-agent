@@ -7,7 +7,6 @@ use Bearer\Sh\Model\Filters\Filter;
 
 /**
  * Class Configuration
- * @Serializer\AccessType("public_method")
  */
 class Configuration
 {
@@ -27,6 +26,11 @@ class Configuration
 	private $debug = false;
 
 	/**
+	 * @var bool
+	 */
+	private $verbose = false;
+
+	/**
 	 * @var string|null
 	 */
 	private $secretKey = null;
@@ -34,7 +38,7 @@ class Configuration
 	/**
 	 * @var bool
 	 */
-	private $disabled = false;
+	private $disabled = true;
 
 	/**
 	 * @var array[hash] Filter
@@ -177,6 +181,24 @@ class Configuration
 	{
 		$this->disabled = $disabled;
 
+		return $this;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isVerbose(): bool
+	{
+		return $this->verbose;
+	}
+
+	/**
+	 * @param bool $verbose
+	 * @return Configuration
+	 */
+	public function setVerbose(bool $verbose): Configuration
+	{
+		$this->verbose = $verbose;
 		return $this;
 	}
 

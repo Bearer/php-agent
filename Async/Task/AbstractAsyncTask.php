@@ -2,6 +2,7 @@
 
 namespace Bearer\Sh\Async\Task;
 
+use Bearer\Sh\Agent;
 use Bearer\Sh\Async\Pool;
 
 /**
@@ -35,6 +36,8 @@ abstract class AbstractAsyncTask extends AbstractTask
 		if ($this->prevent()) {
 			return $this;
 		}
+
+		Agent::verbose('Task', 'run', static::class);
 
 		$this->pool
 			->add($this())

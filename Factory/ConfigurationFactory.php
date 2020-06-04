@@ -25,6 +25,7 @@ class ConfigurationFactory
 		$configuration->setEnvironment($data["environment"] ?? $configuration->getEnvironment());
 		$configuration->setDebug($data["debug"] ?? $configuration->isDebug());
 		$configuration->setSecretKey($data["secretKey"] ?? $configuration->getSecretKey());
+		$configuration->setVerbose($data["verbose"] ?? $configuration->isVerbose());
 		$configuration->setDisabled($data["disabled"] ?? $configuration->isDisabled());
 
 		foreach ($data['dataCollectionRules'] ?? [] as $i => $rule) {

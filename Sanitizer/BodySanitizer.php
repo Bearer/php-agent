@@ -23,7 +23,11 @@ class BodySanitizer extends AbstractSanitizeHandler
 			return '(omitted due to size)';
 		}
 
-		if ($this->getHeaderValue($headers, 'content-encoding') === 'gzip' && function_exists('gzdecode')) {
+		if (
+			$this->getHeaderValue($headers, 'content-encoding') === 'gzip' &&
+			function_exists('gzdecode') &&
+			0 === mb_strpos($data , "\x1f" . "\x8b" . "\x08")
+		) {
 			$data = gzdecode($data);
 		}
 
@@ -32,12 +36,6 @@ class BodySanitizer extends AbstractSanitizeHandler
 		json_decode($data);
 		if (json_last_error() === JSON_ERROR_NONE) {
 			$type = "application/json";
-		} else {
-			parse_str($data, $parsed_data);
-			if (!empty(array_filter($parsed_data))) {
-				$type = "x-www-form-urlencoded";
-				$data = $parsed_data;
-			}
 		}
 
 		if ($type !== null) {
@@ -50,6 +48,7 @@ class BodySanitizer extends AbstractSanitizeHandler
 		}
 
 		$data = $this->filter($data);
+
 		return is_array($data) ? json_encode($data, JSON_NUMERIC_CHECK) : $data;
 	}
 

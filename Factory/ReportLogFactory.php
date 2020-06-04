@@ -9,7 +9,6 @@ use Bearer\Sh\Model\Configuration;
 use Bearer\Sh\Model\DataCollectionRule;
 use Bearer\Sh\Model\ReportLog;
 use Bearer\Sh\Request\CurlRequest;
-use Bearer\Sh\Serializer\ShaPayloadSerializer;
 
 /**
  * Class ReportLogFactory
@@ -27,7 +26,7 @@ class ReportLogFactory
 
 		$log = new ReportLog();
 
-		$log->setLogLevel(LogLevel::RESTRICTED);
+		$log->setLogLevel(LogLevel::DETECTED);
 		$log->setStartedAt($response->getStartTime());
 		$log->setEndedAt($response->getEndTime());
 
@@ -40,17 +39,18 @@ class ReportLogFactory
 
 		$log->setUrl($response->getUrlInformation()['url']);
 		$log->setMethod($response->getMethod());
-		$log->setRequestHeaders($response->getRequestHeaders());
 		$log->setPath($response->getUrlInformation()['path']);
-
-		$log->setResponseHeaders($response->getResponseHeaders());
 		$log->setStatusCode($response->getStatusCode());
 
+		$log->setRequestHeaders($response->getRequestHeaders());
 		$log->setRequestBody($response->getRequestBody());
-		$log->setResponseBody($response->getResponseBody());
-		
 		$log->setRequestBodyPayloadSha((new ShaPayloadFactory())($log->getRequestBody()));
-		$log->setResponseBodyPayloadSha((new ShaPayloadFactory())($log->getResponseBody()));
+
+		if ($log->getType() === ReportLogType::SUCCESS) {
+			$log->setResponseHeaders($response->getResponseHeaders());
+			$log->setResponseBody($response->getResponseBody());
+			$log->setResponseBodyPayloadSha((new ShaPayloadFactory())($log->getResponseBody()));
+		}
 
 		if ($log->getType() === ReportLogType::ERROR) {
 			$log->setErrorCode($response->getStatusCode());

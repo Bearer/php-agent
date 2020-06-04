@@ -2,6 +2,8 @@
 
 namespace Bearer\Sh\Async\Task;
 
+use Bearer\Sh\Agent;
+
 /**
  * Class AbstractTask
  * @package Bearer\Sh\Async\Task
@@ -21,6 +23,8 @@ abstract class AbstractTask
 		if ($this->prevent()) {
 			return $this;
 		}
+
+		Agent::verbose('Task', 'run', static::class);
 
 		try {
 			$output = ($this())();
@@ -53,6 +57,6 @@ abstract class AbstractTask
 	 */
 	public function catch(\Exception $e): void
 	{
-
+		Agent::verbose('Task', 'error', $e->getMessage());
 	}
 }

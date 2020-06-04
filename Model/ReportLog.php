@@ -387,7 +387,7 @@ class ReportLog
 	 * @param int $statusCode
 	 * @return ReportLog
 	 */
-	public function setStatusCode(int $statusCode): ReportLog
+	public function setStatusCode(?int $statusCode): ReportLog
 	{
 		$this->statusCode = $statusCode;
 		return $this;
@@ -477,7 +477,7 @@ class ReportLog
 	 * @param string $errorCode
 	 * @return ReportLog
 	 */
-	public function setErrorCode(string $errorCode): ReportLog
+	public function setErrorCode(?string $errorCode): ReportLog
 	{
 		$this->errorCode = $errorCode;
 		return $this;

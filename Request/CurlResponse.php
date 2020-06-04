@@ -38,11 +38,6 @@ class CurlResponse
 	private $location = null;
 
 	/**
-	 * @var array
-	 */
-	private $headers = [];
-
-	/**
 	 * CurlResponse constructor.
 	 * @param CurlRequest $request
 	 */
@@ -87,13 +82,13 @@ class CurlResponse
 	 */
 	public function isSuccess(): bool
 	{
-		return $this->getStatusCode() >= 200 && $this->getStatusCode() < 300;
+		return $this->http_code !== null;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getStatusCode(): int
+	public function getStatusCode(): ?int
 	{
 		return $this->http_code;
 	}
@@ -155,67 +150,5 @@ class CurlResponse
 	public function getResponseHeaders(): array
 	{
 		return (new HeaderSanitizer)($this->headers);
-	}
-
-	/**
-	 * @param resource $ch
-	 * @param string $data
-	 */
-	public function addHeader($ch, string $data): void
-	{
-		if ($this->http_method === null) {
-			$this->http_method = $this->request->getOptions()[CURLOPT_CUSTOMREQUEST] ?? null;
-		}
-
-		if ("\r\n" !== $data) {
-			$local_headers = [substr($data, 0, -2)];
-			foreach ($local_headers as $h) {
-				if (11 <= \strlen($h) && '/' === $h[4] && preg_match('#^HTTP/\d+(?:\.\d+)? ([12345]\d\d)(?: |$)#', $h, $m)) {
-					if ($local_headers) {
-						$local_headers = [];
-					}
-					$this->http_code = (int)$m[1];
-				} elseif (2 === \count($m = explode(':', $h, 2))) {
-					$local_headers[strtolower($m[0])][] = ltrim($m[1]);
-				}
-
-				$this->headers[] = $h;
-			}
-
-			if ($this->http_code === null) {
-				throw new \RuntimeException('Invalid or missing HTTP status line.');
-			}
-
-			if (0 !== strpos($data, 'HTTP/')) {
-				return;
-			}
-
-			if (
-				303 === $this->http_code || (
-					'POST' === $this->http_method && \in_array($this->http_code, [301, 302], true)
-				)
-			) {
-				$this->http_method = 'HEAD' === $this->http_method ? 'HEAD' : 'GET';
-			}
-		}
-
-
-		if (200 > $this->http_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE)) {
-			$this->addData(new InformationalChunk($this->http_code, $this->headers));
-			$this->location = null;
-
-			return;
-		}
-
-		if ($this->http_code < 300 || 400 <= $this->http_code || null === $this->location) {
-			// Headers and redirects completed, time to get the response's content
-			$this->addData(new FirstChunk());
-
-			if ('HEAD' === $this->http_method || \in_array($this->http_code, [204, 304], true)) {
-				$this
-					->addData(null)
-					->addData(null);
-			}
-		}
 	}
 }

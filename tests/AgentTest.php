@@ -41,5 +41,6 @@ class AgentTest extends TestCase
 		$this->assertSame("secret_key", $configuration->getSecretKey());
 		$this->assertSame(false, $configuration->isDisabled());
 		$this->assertSame(true, $configuration->isDebug());
+		$this->assertSame(false, $configuration->isVerbose());
 	}
 }

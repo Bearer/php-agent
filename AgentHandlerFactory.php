@@ -39,6 +39,7 @@ class AgentHandlerFactory
 	 */
 	public static function build(): void
 	{
+		Agent::verbose('Runkit7', 'configuration start');
 		/** @var AbstractHandler $handler */
 		foreach (self::handlers as $handler) {
 			if (
@@ -46,8 +47,11 @@ class AgentHandlerFactory
 				self::rename($handler::getMethod())
 			) {
 				self::add($handler, $handler::getMethod());
+				Agent::verbose('Runkit7', 'method overrided', $handler::getMethod());
 			}
 		}
+		Agent::verbose('Runkit7', 'configuration done');
+
 	}
 
 	/**

@@ -3,6 +3,7 @@
 namespace Bearer\Sh\Model\Filters;
 
 use Bearer\Sh\Enum\FilterType;
+use Bearer\Sh\Enum\ReportLogType;
 use Bearer\Sh\Model\ReportLog;
 
 /**
@@ -18,6 +19,6 @@ class ConnectionErrorFilter extends Filter
 	 */
 	public function match(ReportLog $log): bool
 	{
-		return false;
+		return $log->getType() === ReportLogType::ERROR;
 	}
 }
