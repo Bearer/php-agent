@@ -31,10 +31,6 @@ class BodySanitizer extends AbstractSanitizeHandler
 			$data = gzdecode($data);
 		}
 
-		if(is_string($data) && !ctype_print($data)) {
-			$data = "(not showing binary data)";
-		}
-
 		$type = $this->getHeaderValue($headers, 'content-type');
 
 		json_decode($data);
