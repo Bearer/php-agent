@@ -73,11 +73,12 @@ class SetFilter extends Filter
 			}, $filters)
 		);
 
+		$filters = array_filter($filters);
 		if($this->getOperator() === FilterSetOperator::ALL) {
-			return !in_array(false, $filters);
+			return count($filters) === count($this->getChildHashes());
 		}
 
-		return in_array(false, $filters);
+		return count($filters) > 0;
 	}
 
 	/**
