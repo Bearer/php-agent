@@ -25,23 +25,23 @@ class AgentConfigurationResolver
 					'debug' => false,
 					'secretKey' => null,
 					'verbose' => false,
-					'environment' => $_SERVER['env'] ?? $_SERVER['APP_ENV'] ?? $_ENV['env'] ?? $_ENV['APP_ENV'] ?? 'default',
+					'environment' => $_SERVER['env'] ?? ($_SERVER['APP_ENV'] ?? ($_ENV['env'] ?? $_ENV['APP_ENV'])) ?? 'default',
 					'disabled' => function (Options $options) {
 						return $options->offsetExists('secretKey') ? $options->offsetGet('secretKey') === null : true;
 					},
 					'stripSensitiveKeys' => null,
 					'stripSensitiveRegex' => null,
 					'stripSensitiveData' => true,
-					'configHost' => 'config.bearer.sh',
-					'reportHost' => 'agent.bearer.sh'
+					'configHost' => 'https://config.bearer.sh',
+					'reportHost' => 'https://agent.bearer.sh'
 				])
 				->setAllowedTypes('debug', 'bool')
-				->setAllowedTypes('secretKey', 'string')
+				->setAllowedTypes('secretKey', ['string', 'null'])
 				->setAllowedTypes('verbose', 'bool')
 				->setAllowedTypes('environment', 'string')
 				->setAllowedTypes('disabled', 'bool')
-				->setAllowedTypes('stripSensitiveKeys', 'string')
-				->setAllowedTypes('stripSensitiveRegex', 'string')
+				->setAllowedTypes('stripSensitiveKeys', ['string', 'null'])
+				->setAllowedTypes('stripSensitiveRegex', ['string', 'null'])
 				->setAllowedTypes('stripSensitiveData', 'bool')
 				->setAllowedTypes('configHost', 'string')
 				->setAllowedTypes('reportHost', 'string');

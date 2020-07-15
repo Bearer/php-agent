@@ -29,7 +29,7 @@ class PathFilter extends Filter
 	public function match(ReportLog $log): bool
 	{
 		return (bool)preg_match(
-			sprintf('/%s/%s', $this->getPattern()->getValue(), $this->getPattern()->getFlags()),
+			sprintf('/%s/%s', str_replace('/', '\/', $this->getPattern()->getValue()), $this->getPattern()->getFlags()),
 			$log->getPath()
 		);
 	}

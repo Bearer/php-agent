@@ -57,6 +57,6 @@ abstract class AbstractTask
 	 */
 	public function catch(\Exception $e): void
 	{
-		Agent::verbose('Task', 'error', $e->getMessage());
+		Agent::verbose('Task - ' . static::class, 'error', $e->getMessage());
 	}
 }

@@ -18,8 +18,8 @@ class RangeFactory
 	{
 		$range = new Range();
 
-		$range->setFrom($data['from']);
-		$range->setTo($data['to']);
+		$range->setFrom($data['from'] ?? null);
+		$range->setTo($data['to'] ?? null);
 		$range->setFromExclusive($data['fromExclusive'] ?? false);
 		$range->setToExclusive($data['toExclusive'] ?? false);
 

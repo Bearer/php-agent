@@ -3,6 +3,7 @@
 namespace Bearer\Test;
 
 use Bearer\AgentHandlerFactory;
+use Bearer\Model\Configuration;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,6 +17,9 @@ class AgentHandlerFactoryTest extends TestCase
 	 */
 	public function testBaseMethodCreated(): void
 	{
+		Configuration::get([
+			'verbose' => false
+		]);
 		AgentHandlerFactory::build();
 
 		$this->assertTrue(function_exists('base_curl_exec'));

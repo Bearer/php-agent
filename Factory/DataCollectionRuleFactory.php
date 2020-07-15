@@ -18,7 +18,7 @@ class DataCollectionRuleFactory
 	{
 		$dataCollectionRule = new DataCollectionRule();
 
-		$dataCollectionRule->setFilterHash($data['filterHash']);
+		$dataCollectionRule->setFilterHash($data['filterHash'] ?? null);
 		$dataCollectionRule->setParams($data['params']);
 		$dataCollectionRule->setConfig(isset($data['config']) ? (new DynamicConfigFactory())($data['config']) : null);
 		$dataCollectionRule->setSignature($data['signature']);

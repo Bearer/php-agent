@@ -3,6 +3,8 @@
 namespace Bearer\Serializer;
 
 use Bearer\Enum\LogLevel;
+use Bearer\Enum\ReportLogType;
+use Bearer\Enum\StageType;
 use Bearer\Model\ReportLog;
 
 /**
@@ -17,40 +19,68 @@ class ReportLogSerializer
 	 */
 	public function __invoke(ReportLog $reportLog): array
 	{
-		$export = [
-			'logLevel' => $reportLog->getLogLevel() ?? LogLevel::DETECTED,
-			'port' => $reportLog->getPort(),
-			'protocol' => $reportLog->getProtocol(),
-			'hostname' => $reportLog->getHostname()
+		$exports = [
+			StageType::CONNECT => [
+				'logLevel' => $reportLog->getLogLevel() ?? LogLevel::DETECTED,
+				'port' => $reportLog->getPort(),
+				'protocol' => $reportLog->getProtocol(),
+				'hostname' => $reportLog->getHostname(),
+
+				'startedAt' => $reportLog->getStartedAt(),
+				'endedAt' => $reportLog->getEndedAt(),
+				'type' => $reportLog->getType(),
+				'stageType' => $reportLog->getStageType(),
+				'activeDataCollectionRules' => []
+			],
+			StageType::INIT => [
+				'path' => $reportLog->getPath(),
+				'method' => $reportLog->getMethod(),
+				'url' => $reportLog->getUrl()
+			],
+			StageType::REQUEST => [
+				'requestHeaders' => $reportLog->getRequestHeaders()
+			],
+			StageType::RESPONSE => [
+				'statusCode' => $reportLog->getStatusCode(),
+				'responseHeaders' => $reportLog->getResponseHeaders()
+			],
+			StageType::BODIES => [
+				'requestBody' => $reportLog->getRequestBody(),
+				'requestBodyPayloadSha' => $reportLog->getRequestBodyPayloadSha(),
+				'responseBody' => $reportLog->getResponseBody(),
+				'responseBodyPayloadSha' => $reportLog->getResponseBodyPayloadSha()
+			]
 		];
 
-		if(($reportLog->getLogLevel() ?? LogLevel::DETECTED) === LogLevel::DETECTED) {
-			return $export;
+		$export = [];
+		foreach ($exports as $stage => $stage_export) {
+			if (StageType::is($stage, $reportLog->getStageType())) {
+				$export += $stage_export;
+			}
 		}
-
-		$export = array_merge($export, [
-			'startedAt' => $reportLog->getStartedAt(),
-			'endedAt' => $reportLog->getEndedAt(),
-			'type' => $reportLog->getType(),
-			'stageType' => $reportLog->getStageType(),
-			'activeDataCollectionRules' => [],
-			'path' => $reportLog->getPath(),
-			'method' => $reportLog->getMethod(),
-			'url' => $reportLog->getUrl(),
-			'requestHeaders' => $reportLog->getRequestHeaders(),
-			'responseHeaders' => $reportLog->getResponseHeaders(),
-			'statusCode' => $reportLog->getStatusCode(),
-			'requestBody' => $reportLog->getRequestBody(),
-			'responseBody' => $reportLog->getResponseBody(),
-			'responseBodyPayloadSha' => $reportLog->getResponseBodyPayloadSha(),
-			'requestBodyPayloadSha' => $reportLog->getRequestBodyPayloadSha(),
-			'errorCode' => $reportLog->getErrorCode(),
-			'errorFullMessage' => $reportLog->getErrorFullMessage()
-		]);
 
 		foreach ($reportLog->getActiveDataCollectionRules() ?? [] as $i => $dataCollectionRule) {
 			$export['activeDataCollectionRules'][$i] = (new DataCollectionRuleSerializer())($dataCollectionRule);
 		}
+
+		if (($reportLog->getLogLevel() ?? LogLevel::DETECTED) === LogLevel::DETECTED) {
+			return array_filter($export, function ($key) {
+				return in_array($key, [
+					'logLevel',
+					'port',
+					'protocol',
+					'hostname'
+				]);
+			}, ARRAY_FILTER_USE_KEY);
+		}
+
+		if ($reportLog->getType() === ReportLogType::ERROR) {
+			$export += [
+				'errorCode' => $reportLog->getErrorCode(),
+				'errorFullMessage' => $reportLog->getErrorFullMessage()
+			];
+		}
+
 
 		return $export;
 	}

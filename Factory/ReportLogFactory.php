@@ -26,16 +26,18 @@ class ReportLogFactory
 
 		$log = new ReportLog();
 
+		$response->getResponseBody();
+
 		$log->setLogLevel(LogLevel::DETECTED);
 		$log->setStartedAt($response->getStartTime());
 		$log->setEndedAt($response->getEndTime());
 
 		$log->setType($response->isSuccess() ? ReportLogType::SUCCESS : ReportLogType::ERROR);
-		$log->setStageType(StageType::RESPONSE);
+		$log->setStageType($response->getStatusCode() === null ? StageType::REQUEST : StageType::BODIES);
 
 		$log->setHostname($response->getUrlInformation()['host'] ?? '');
 		$log->setProtocol($response->getUrlInformation()['scheme'] ?? 'http');
-		$log->setPort($response->getUrlInformation()['port'] ?? $log->getProtocol() === 'https' ? 443 : 80);
+		$log->setPort(($response->getUrlInformation()['port'] ?? $log->getProtocol()) === 'https' ? 443 : 80);
 
 		$log->setUrl($response->getUrlInformation()['url']);
 		$log->setMethod($response->getMethod());
@@ -49,6 +51,7 @@ class ReportLogFactory
 		if ($log->getType() === ReportLogType::SUCCESS) {
 			$log->setResponseHeaders($response->getResponseHeaders());
 			$log->setResponseBody($response->getResponseBody());
+			$log->setResponseBodySize($response->getResponseBodySize());
 			$log->setResponseBodyPayloadSha((new ShaPayloadFactory())($log->getResponseBody()));
 		}
 
@@ -56,7 +59,6 @@ class ReportLogFactory
 			$log->setErrorCode($response->getStatusCode());
 			$log->setErrorFullMessage($response->getResponseBody());
 		}
-
 		/** @var DataCollectionRule $dataCollectionRule */
 		foreach (Configuration::get()->getActiveDataCollectionRules() as $dataCollectionRule) {
 			if (

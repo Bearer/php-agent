@@ -37,13 +37,6 @@ class ReportTask extends AbstractTask
 		$this->ch = $ch;
 		$this->request = CurlRequest::get($ch);
 
-		if (!ConfigurationTask::get()->isLoad()) {
-			Agent::verbose('Configuration', 'waiting');
-			ConfigurationTask::get()
-				->wait()
-				->run();
-		}
-
 		$configuration_data = ConfigurationTask::get()->getData();
 		if ($configuration_data !== null) {
 			(new ConfigurationFactory())($configuration_data, Configuration::get());
@@ -64,14 +57,14 @@ class ReportTask extends AbstractTask
 
 		Agent::verbose('Report', 'serialize', intval($this->ch));
 		$data = (new ReportSerializer())($report);
-
+dump($data);
 		return function () use ($configuration, $data) {
 			$ch = curl_init();
 			base_curl_setopt_array($ch, [
-				CURLOPT_URL => sprintf('https://%s/logs', $configuration->getReportHost()),
+				CURLOPT_URL => sprintf('%s/logs', $configuration->getReportHost()),
 				CURLOPT_POST => true,
 				CURLOPT_POSTFIELDS => json_encode($data,
-					JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES | JSON_HEX_QUOT | JSON_HEX_TAG | JSON_UNESCAPED_LINE_TERMINATORS | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_PRETTY_PRINT
+					JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_QUOT | JSON_HEX_TAG | JSON_UNESCAPED_LINE_TERMINATORS | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_PRETTY_PRINT
 				),
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_FORBID_REUSE => true,

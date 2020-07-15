@@ -12,14 +12,17 @@ class RegularExpressionFactory
 {
     /**
      * @param array $data
-     * @return RegularExpression
+     * @return RegularExpression|null
      */
-    public function __invoke(array $data): RegularExpression
+    public function __invoke(?array $data = []): ?RegularExpression
     {
-        $regEx = new RegularExpression();
+    	if (empty($data) || $data === null) {
+    		return null;
+		}
 
-        $regEx->setValue($data['value']);
-        $regEx->setFlags($data['flags']);
+        $regEx = new RegularExpression();
+    	$regEx->setValue($data['value']);
+        $regEx->setFlags($data['flags'] ?? 'i');
 
         return $regEx;
     }

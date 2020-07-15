@@ -285,6 +285,10 @@ class Configuration
 	 */
 	public function replaceStripSensitiveRegex($data)
 	{
+		if (!is_string($data)) {
+			return $data;
+		}
+
 		return preg_replace(
 			sprintf('/%s/i', implode('|', $this->getStripSensitiveRegex())),
 			'[FILTERED]',

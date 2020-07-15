@@ -34,8 +34,8 @@ class BodySanitizerTest extends TestCase
 	public function testJsonResult(): void
 	{
 		$this->assertSame(
-			json_encode(self::sponge_bob, JSON_NUMERIC_CHECK),
-			(new BodySanitizer())(json_encode(self::sponge_bob, JSON_NUMERIC_CHECK), [])
+			json_encode(self::sponge_bob),
+			(new BodySanitizer())(json_encode(self::sponge_bob), [])
 		);
 	}
 

@@ -15,7 +15,7 @@ class BodySanitizer extends AbstractSanitizeHandler
 	 */
 	public function __invoke($data, array $headers, $size = null)
 	{
-		if ($data === false) {
+		if ($data === false || $data === null) {
 			return '(no body)';
 		}
 
@@ -49,7 +49,7 @@ class BodySanitizer extends AbstractSanitizeHandler
 
 		$data = $this->filter($data);
 
-		return is_array($data) ? json_encode($data, JSON_NUMERIC_CHECK) : $data;
+		return is_array($data) ? json_encode($data) : $data;
 	}
 
 	/**

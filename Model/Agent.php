@@ -50,7 +50,7 @@ class Agent
 	 */
 	public function setVersion(string $version): Agent
 	{
-		$this->version = $version;
+		$this->version = strval($version);
 		return $this;
 	}
 }

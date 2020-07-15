@@ -3,18 +3,18 @@
 namespace Bearer\Model\Filters;
 
 use Bearer\Enum\FilterType;
-use Bearer\Model\Range;
 use Bearer\Model\ReportLog;
 
 /**
- * Class StatusCodeFilter
+ * Class ResponseBodySizeFilter
+ * @package Bearer\Model\Filters
  */
-class StatusCodeFilter extends RangeFilter
+class ResponseBodySizeFilter extends RangeFilter
 {
 	/**
 	 * @var string
 	 */
-	protected $typeName = FilterType::STATUS_CODE;
+	protected $typeName = FilterType::RESPONSE_BODY_SIZE;
 
 	/**
 	 * @param ReportLog $log
@@ -22,6 +22,6 @@ class StatusCodeFilter extends RangeFilter
 	 */
 	protected function getValue(ReportLog $log): ?int
 	{
-		return $log->getStatusCode();
+		return $log->getResponseBodySize();
 	}
 }

@@ -22,6 +22,6 @@ class ResponseHeaderFilter extends KeyValueFilter
 	 */
 	protected function getMatchParameters(ReportLog $log): array
 	{
-		return $log->getResponseHeaders();
+		return $log->getResponseHeaders() ?? [];
 	}
 }

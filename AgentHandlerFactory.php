@@ -51,7 +51,6 @@ class AgentHandlerFactory
 			}
 		}
 		Agent::verbose('Runkit7', 'configuration done');
-
 	}
 
 	/**

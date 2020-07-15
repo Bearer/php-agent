@@ -28,6 +28,13 @@ class ShaPayloadFactoryTest extends TestCase
 		"friends" => ["Sponge Bob", "mr krab", "starman"]
 	];
 
+	private const validator = [
+		"result" => ['42'],
+		"other" => [
+			"value" => "test"
+		]
+	];
+
 	/**
 	 * @return void
 	 */
@@ -35,7 +42,7 @@ class ShaPayloadFactoryTest extends TestCase
 	{
 		$this->assertSame(
 			"9d50c0ee5be33590542a35b92f4bfef7770aae21927d4ba8f4804fb108cb3b55",
-			(new ShaPayloadFactory())(json_encode(self::sponge_bob, JSON_NUMERIC_CHECK))
+			(new ShaPayloadFactory())(json_encode(self::sponge_bob))
 		);
 	}
 
@@ -45,8 +52,19 @@ class ShaPayloadFactoryTest extends TestCase
 	public function testSameStructureSameResult(): void
 	{
 		$this->assertSame(
-			(new ShaPayloadFactory())(json_encode(self::patrick, JSON_NUMERIC_CHECK)),
-			(new ShaPayloadFactory())(json_encode(self::sponge_bob, JSON_NUMERIC_CHECK))
+			(new ShaPayloadFactory())(json_encode(self::patrick)),
+			(new ShaPayloadFactory())(json_encode(self::sponge_bob))
+		);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidator(): void
+	{
+		$this->assertSame(
+			"5724ab06837a9899f9a901d5bba28daa1794aa482134e2b667d8b48ca9533c09",
+			(new ShaPayloadFactory())(json_encode(self::validator))
 		);
 	}
 

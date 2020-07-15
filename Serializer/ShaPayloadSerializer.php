@@ -45,6 +45,6 @@ class ShaPayloadSerializer
 			];
 		}
 
-		return $hash ? hash('sha256', json_encode($payload, JSON_NUMERIC_CHECK)) : $payload;
+		return $hash ? hash('sha256', json_encode($payload)) : $payload;
 	}
 }

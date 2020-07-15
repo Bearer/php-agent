@@ -94,6 +94,11 @@ class ReportLog
 	private $responseBody;
 
 	/**
+	 * @var int
+	 */
+	private $responseBodySize;
+
+	/**
 	 * @var string|null
 	 */
 	private $requestBodyPayloadSha;
@@ -104,7 +109,7 @@ class ReportLog
 	private $responseBodyPayloadSha;
 
 	/**
-	 * @var string
+	 * @var int
 	 */
 	private $errorCode;
 
@@ -376,9 +381,9 @@ class ReportLog
 	}
 
 	/**
-	 * @return int
+	 * @return int|null
 	 */
-	public function getStatusCode(): int
+	public function getStatusCode(): ?int
 	{
 		return $this->statusCode;
 	}
@@ -448,6 +453,24 @@ class ReportLog
 	}
 
 	/**
+	 * @return int|null
+	 */
+	public function getResponseBodySize(): ?int
+	{
+		return $this->responseBodySize;
+	}
+
+	/**
+	 * @param int|null $responseBodySize
+	 * @return ReportLog
+	 */
+	public function setResponseBodySize(?int $responseBodySize): ReportLog
+	{
+		$this->responseBodySize = $responseBodySize;
+		return $this;
+	}
+
+	/**
 	 * @return string|null
 	 */
 	public function getResponseBodyPayloadSha(): ?string
@@ -466,18 +489,18 @@ class ReportLog
 	}
 
     /**
-     * @return string|null
+     * @return int|null
      */
-	public function getErrorCode(): ?string
+	public function getErrorCode(): ?int
 	{
 		return $this->errorCode;
 	}
 
 	/**
-	 * @param string $errorCode
+	 * @param int $errorCode
 	 * @return ReportLog
 	 */
-	public function setErrorCode(?string $errorCode): ReportLog
+	public function setErrorCode(?int $errorCode): ReportLog
 	{
 		$this->errorCode = $errorCode;
 		return $this;

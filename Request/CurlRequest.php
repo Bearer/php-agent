@@ -34,7 +34,7 @@ class CurlRequest
 	/**
 	 * @var resource
 	 */
-	private $ch;
+	public $ch;
 
 	/**
 	 * @var string

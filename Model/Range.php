@@ -28,18 +28,18 @@ class Range
     private $toExclusive = false;
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getFrom(): float
+    public function getFrom(): ?float
     {
         return $this->from;
     }
 
     /**
-     * @param float $from
+     * @param float|null $from
      * @return Range
      */
-    public function setFrom(float $from): Range
+    public function setFrom(?float $from): Range
     {
         $this->from = $from;
 
@@ -66,18 +66,18 @@ class Range
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getTo(): float
+    public function getTo(): ?float
     {
         return $this->to;
     }
 
     /**
-     * @param float $to
+     * @param float|null $to
      * @return Range
      */
-    public function setTo(float $to): Range
+    public function setTo(?float $to): Range
     {
         $this->to = $to;
 

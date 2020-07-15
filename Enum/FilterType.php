@@ -17,8 +17,12 @@ class FilterType extends Enum
     const PATH = 'PathFilter';
     const PARAM = 'ParamFilter';
     const REQUEST_HEADER = 'RequestHeaderFilter';
+    const REQUEST_BODY = 'RequestBodyFilter';
+    const REQUEST_BODY_SIZE = 'RequestBodySizeFilter';
     // Response
     const RESPONSE_HEADER = 'ResponseHeaderFilter';
+	const RESPONSE_BODY = 'ResponseBodyFilter';
+	const RESPONSE_BODY_SIZE = 'ResponseBodySizeFilter';
     const STATUS_CODE = 'StatusCodeFilter';
     // Error
     const CONNECTION_ERROR = 'ConnectionErrorFilter';

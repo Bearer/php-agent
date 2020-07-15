@@ -2,10 +2,6 @@
 
 namespace Bearer\Request;
 
-use Bearer\Request\Chunk\FirstChunk;
-use Bearer\Request\Chunk\InformationalChunk;
-use Bearer\Sanitizer\Sanitizer;
-use Bearer\ObjectTransformer;
 use Bearer\Sanitizer\BodySanitizer;
 use Bearer\Sanitizer\HeaderSanitizer;
 
@@ -90,7 +86,9 @@ class CurlResponse
 	 */
 	public function getStatusCode(): ?int
 	{
-		return $this->http_code;
+		$code = intval($this->http_code ?? curl_getinfo($this->request->getResource(), CURLINFO_RESPONSE_CODE));
+
+		return $code > 0 ? $code : null;
 	}
 
 	/**
@@ -110,7 +108,7 @@ class CurlResponse
 	 */
 	public function getMethod(): string
 	{
-		return $this->http_method ?? ($this->getOptions()[CURLOPT_CUSTOMREQUEST] ?? 'GET');
+		return $this->http_method ?? ($this->getOptions()[CURLOPT_CUSTOMREQUEST] ?? ($this->getOptions()[CURLOPT_POST] ? 'POST' : 'GET'));
 	}
 
 	/**
@@ -140,7 +138,7 @@ class CurlResponse
 		return (new BodySanitizer)(
 			$this->getContent(),
 			$this->getResponseHeaders(),
-			curl_getinfo($this->request->getResource(), CURLINFO_SIZE_DOWNLOAD)
+			$this->getResponseBodySize()
 		);
 	}
 
@@ -150,5 +148,13 @@ class CurlResponse
 	public function getResponseHeaders(): array
 	{
 		return (new HeaderSanitizer)($this->headers);
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getResponseBodySize(): ?int
+	{
+		return curl_getinfo($this->request->getResource(), CURLINFO_SIZE_DOWNLOAD);
 	}
 }

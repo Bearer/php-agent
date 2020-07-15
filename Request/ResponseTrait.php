@@ -5,6 +5,7 @@ namespace Bearer\Request;
 use Bearer\Request\Chunk\DataChunk;
 use Bearer\Request\Chunk\ErrorChunk;
 use Bearer\Request\Chunk\FirstChunk;
+use Bearer\Request\Chunk\InformationalChunk;
 use Bearer\Request\Chunk\LastChunk;
 use Bearer\Exception\TransportException;
 
@@ -124,9 +125,9 @@ trait ResponseTrait
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	public function getContent(): string
+	public function getContent(): ?string
 	{
 		if ($this->content === null) {
 			$content = null;
@@ -145,7 +146,7 @@ trait ResponseTrait
 				return '';
 			}
 
-			throw new \RuntimeException('Cannot get the content of the response twice: buffering is disabled.');
+			$this->content = null;
 		}
 
 		if(is_resource($this->content)) {

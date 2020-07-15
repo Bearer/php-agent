@@ -16,7 +16,7 @@ class ShaPayloadTypeNumber extends AbstractShaPayloadType
 	 */
 	public static function vote($data): int
 	{
-		return is_numeric($data) ? 2 : 0;
+		return is_integer($data) ? 2 : 0;
 	}
 
 	/**

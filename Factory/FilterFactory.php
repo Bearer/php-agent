@@ -7,10 +7,16 @@ use Bearer\Model\Filters\ConnectionErrorFilter;
 use Bearer\Model\Filters\DomainFilter;
 use Bearer\Model\Filters\Filter;
 use Bearer\Model\Filters\HttpMethodFilter;
+use Bearer\Model\Filters\KeyValueFilter;
 use Bearer\Model\Filters\NotFilter;
 use Bearer\Model\Filters\ParamFilter;
 use Bearer\Model\Filters\PathFilter;
+use Bearer\Model\Filters\RangeFilter;
+use Bearer\Model\Filters\RequestBodyFilter;
+use Bearer\Model\Filters\RequestBodySizeFilter;
 use Bearer\Model\Filters\RequestHeaderFilter;
+use Bearer\Model\Filters\ResponseBodyFilter;
+use Bearer\Model\Filters\ResponseBodySizeFilter;
 use Bearer\Model\Filters\ResponseHeaderFilter;
 use Bearer\Model\Filters\SetFilter;
 use Bearer\Model\Filters\StatusCodeFilter;
@@ -34,7 +40,11 @@ class FilterFactory
 		FilterType::REQUEST_HEADER => RequestHeaderFilter::class,
 		FilterType::RESPONSE_HEADER => ResponseHeaderFilter::class,
 		FilterType::STATUS_CODE => StatusCodeFilter::class,
-		FilterType::CONNECTION_ERROR => ConnectionErrorFilter::class
+		FilterType::CONNECTION_ERROR => ConnectionErrorFilter::class,
+		FilterType::REQUEST_BODY => RequestBodyFilter::class,
+		FilterType::REQUEST_BODY_SIZE => RequestBodySizeFilter::class,
+		FilterType::RESPONSE_BODY => ResponseBodyFilter::class,
+		FilterType::RESPONSE_BODY_SIZE => ResponseBodySizeFilter::class
 	];
 
 	/**
@@ -67,15 +77,12 @@ class FilterFactory
 			$filter->setPattern((new RegularExpressionFactory())($data['pattern']));
 		}
 
-		if ($filter instanceof ResponseHeaderFilter
-			|| $filter instanceof RequestHeaderFilter
-			|| $filter instanceof ParamFilter
-		) {
+		if ((new \ReflectionClass($filter))->isSubclassOf(KeyValueFilter::class)) {
 			$filter->setValuePattern((new RegularExpressionFactory())($data['valuePattern']));
 			$filter->setKeyPattern((new RegularExpressionFactory())($data['keyPattern']));
 		}
 
-		if ($filter instanceof StatusCodeFilter) {
+		if ((new \ReflectionClass($filter))->isSubclassOf(RangeFilter::class)) {
 			$filter->setRange((new RangeFactory())($data['range']));
 		}
 

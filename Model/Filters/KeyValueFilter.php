@@ -47,7 +47,7 @@ abstract class KeyValueFilter extends Filter
 			}
 		}
 
-		return false;
+		return $this->getValuePattern() === null && $this->getKeyPattern() === null;
 	}
 
 	/**

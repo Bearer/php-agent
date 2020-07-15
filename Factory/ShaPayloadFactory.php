@@ -63,7 +63,7 @@ class ShaPayloadFactory
 
 		if ($object instanceof ShaPayloadTypeObject) {
 			if (is_object($data)) {
-				$data = json_decode(json_encode($data, JSON_NUMERIC_CHECK), true);
+				$data = json_decode(json_encode($data), true);
 			}
 			ksort($data);
 			$object->setFields(
@@ -74,7 +74,6 @@ class ShaPayloadFactory
 				}, array_keys($data), $data)
 			);
 		}
-
 		return $object;
 	}
 
