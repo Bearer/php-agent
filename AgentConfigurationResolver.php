@@ -25,7 +25,7 @@ class AgentConfigurationResolver
 					'debug' => false,
 					'secretKey' => null,
 					'verbose' => false,
-					'environment' => $_SERVER['env'] ?? ($_SERVER['APP_ENV'] ?? ($_ENV['env'] ?? $_ENV['APP_ENV'])) ?? 'default',
+					'environment' => $_SERVER['env'] ?? ($_SERVER['APP_ENV'] ?? ($_ENV['env'] ?? $_ENV['APP_ENV'])) ?? null,
 					'disabled' => function (Options $options) {
 						return $options->offsetExists('secretKey') ? $options->offsetGet('secretKey') === null : true;
 					},
