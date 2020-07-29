@@ -69,7 +69,7 @@ class SetFilter extends Filter
 		);
 
 		$filters = array_combine(
-			$this->getChildHashes() ?? [],
+			array_unique($this->getChildHashes() ?? []),
 			array_map(function (Filter $filter) use($log) {
 				return $filter->match($log);
 			}, $filters)
