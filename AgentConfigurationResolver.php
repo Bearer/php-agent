@@ -25,7 +25,7 @@ class AgentConfigurationResolver
 					'debug' => false,
 					'secretKey' => null,
 					'verbose' => false,
-					'environment' => $_SERVER['env'] ?? ($_SERVER['APP_ENV'] ?? ($_ENV['env'] ?? $_ENV['APP_ENV'])) ?? 'default',
+					'environment' => $_SERVER['env'] ?? ($_SERVER['APP_ENV'] ?? ($_ENV['env'] ?? $_ENV['APP_ENV'])) ?? null,
 					'disabled' => function (Options $options) {
 						return $options->offsetExists('secretKey') ? $options->offsetGet('secretKey') === null : true;
 					},
@@ -38,7 +38,7 @@ class AgentConfigurationResolver
 				->setAllowedTypes('debug', 'bool')
 				->setAllowedTypes('secretKey', ['string', 'null'])
 				->setAllowedTypes('verbose', 'bool')
-				->setAllowedTypes('environment', 'string')
+				->setAllowedTypes('environment', ['string', 'null'])
 				->setAllowedTypes('disabled', 'bool')
 				->setAllowedTypes('stripSensitiveKeys', ['string', 'null'])
 				->setAllowedTypes('stripSensitiveRegex', ['string', 'null'])

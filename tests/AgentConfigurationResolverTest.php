@@ -17,7 +17,7 @@ class AgentConfigurationResolverTest extends TestCase
 	public function testDefaultEnvironment(): void
 	{
 		$this->assertSame(
-			"default",
+			null,
 			(AgentConfigurationResolver::resolve([]))->getEnvironment()
 		);
 	}
@@ -27,7 +27,7 @@ class AgentConfigurationResolverTest extends TestCase
 	 */
 	public function testServerEnvironment(): void
 	{
-		$_SERVER['env'] = "server_test";
+		$_SERVER['env'] = "server_TEST";
 		$this->assertSame(
 			"server_test",
 			(AgentConfigurationResolver::resolve([]))->getEnvironment()
