@@ -5,10 +5,10 @@
     "authors": [
         {
             "name": "Bearer Team",
-            "email": "engineering@bearer.sh"
+            "email": "engineering+php@bearer.sh"
         }
     ],
-    "license": "MIT",
+    "license": "Apache-2.0",
     "version": "1.0",
     "require": {
         "php": ">=7.1.0",
