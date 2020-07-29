@@ -78,8 +78,8 @@ class FilterFactory
 		}
 
 		if ((new \ReflectionClass($filter))->isSubclassOf(KeyValueFilter::class)) {
-			$filter->setValuePattern((new RegularExpressionFactory())($data['valuePattern']));
-			$filter->setKeyPattern((new RegularExpressionFactory())($data['keyPattern']));
+			$filter->setValuePattern(isset($data['valuePattern']) ? (new RegularExpressionFactory())($data['valuePattern']) : null);
+			$filter->setKeyPattern(isset($data['keyPattern']) ? (new RegularExpressionFactory())($data['keyPattern']) : null);
 		}
 
 		if ((new \ReflectionClass($filter))->isSubclassOf(RangeFilter::class)) {

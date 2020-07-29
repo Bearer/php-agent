@@ -15,9 +15,9 @@ class HeaderSanitizer extends AbstractSanitizeHandler
 	public function __invoke(array $header): array
 	{
 		foreach ($header as $i => $row) {
-			list($header_key, $header_value) = explode(': ', $row);
-			if ($header_value !== null) {
-				$header[$header_key] = $header_value;
+			$headers = explode(': ', $row);
+			if (($header[1] ?? null) !== null) {
+				$header[$headers[0]] = $headers[1];
 			}
 			unset($header[$i]);
 		}

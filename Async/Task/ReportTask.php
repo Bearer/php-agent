@@ -57,7 +57,7 @@ class ReportTask extends AbstractTask
 
 		Agent::verbose('Report', 'serialize', intval($this->ch));
 		$data = (new ReportSerializer())($report);
-dump($data);
+
 		return function () use ($configuration, $data) {
 			$ch = curl_init();
 			base_curl_setopt_array($ch, [
