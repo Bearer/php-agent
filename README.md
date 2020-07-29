@@ -1,4 +1,4 @@
-# bearer/php-agent
+# Bearer PHP Agent
 
 [![Build Status](https://build.bearer.tech/api/badges/Bearer/php-agent/status.svg)](https://build.bearer.tech/Bearer/php-agent)
 
@@ -6,15 +6,15 @@
 
 **PHP:** ^7.1
 
-**Extensions:** 
-- [CURL](https://www.php.net/manual/fr/book.curl.php)
+**Extensions:**
+- [csURL](https://www.php.net/manual/en/book.curl.php)
 - [JSON](https://www.php.net/book.json)
-- [Runkit7](https://www.php.net/manual/fr/book.runkit7.php)
+- [Runkit7](https://www.php.net/manual/en/book.runkit7.php)
 
 
 # Supported
 
-Bearer PHP Agent support any curl request (single and multiples) and :
+The Bearer PHP Agent supports any cURL request (single and multiples) and:
 - [Symfony HttpClient](https://github.com/symfony/http-client)
 - [Guzzle](https://github.com/guzzle/guzzle)
 
@@ -23,12 +23,18 @@ Bearer PHP Agent support any curl request (single and multiples) and :
 You need to enable the runkit7 extension:
 
 ```bash
-curl -sL "https://github.com/runkit7/runkit7/releases/download/3.1.0a1/runkit7-3.1.0a1.tgz" > "runkit-3.1.0a1.tgz" && \
-pecl install "runkit-3.1.0a1.tgz" && \
-rm "runkit-3.1.0a1.tgz"
+$ pecl install "channel://pecl.php.net/runkit7-3.1.0a1"
+```
 
-echo "extension=runkit7.so" > /usr/local/etc/php/conf.d/docker-php-ext-runkit.ini
-echo "runkit.internal_override=true" >> /usr/local/etc/php/php.ini
+Or manually:
+
+```bash
+$ curl -sL "https://github.com/runkit7/runkit7/releases/download/3.1.0a1/runkit7-3.1.0a1.tgz" > "runkit-3.1.0a1.tgz" && \
+$ pecl install "runkit-3.1.0a1.tgz" && \
+$ rm "runkit-3.1.0a1.tgz"
+
+$ echo "extension=runkit7.so" > /usr/local/etc/php/conf.d/docker-php-ext-runkit.ini
+$ echo "runkit.internal_override=true" >> /usr/local/etc/php/php.ini
 ```
 
 From a terminal, install the Bearer agent module and save it into your project:
@@ -63,16 +69,16 @@ An example using the default values is as follows:
 
 ```php
 \Bearer\Agent::init([
-  "stripSensitiveData" => true,
-  "stripSensitiveKeys" => "/^authorization$|^client.id$|^access.token$|^client.secret$/i",
-  "stripSensitiveRegex" => "[a-z0-9]{1}[a-z0-9.!#$%&’*+=?^_`{|}~-]+@[a-z0-9-]+(?:\\.[a-z0-9-]+)*"
+  'stripSensitiveData' => true,
+  'stripSensitiveKeys' => '/^authorization$|^client.id$|^access.token$|^client.secret$/i',
+  'stripSensitiveRegex' => '[a-z0-9]{1}[a-z0-9.!#$%&’*+=?^_`{|}~-]+@[a-z0-9-]+(?:\\.[a-z0-9-]+)*'
 ]);
 ```
 
 ### Configuration options explained
 
 - `stripSensitiveData` - Globally enable/disable data sanitization. It's enabled by default. If you set it to `false` no sanitization will take place, and all the data will be sent to the Bearer dashboard as-is.
-- `stripsSensitiveKeys` - List of _key_ names regex patterns that will be applied to sanitize values in headers, query parameters or response body. If you specify `"stripSensitiveKeys": "^authorization$"` the following sanitization actions would take place:
+- `stripsSensitiveKeys` - List of _key_ names regex patterns that will be applied to sanitize values in headers, query parameters or response body. If you specify `'stripSensitiveKeys' => '/^authorization$/'` the following sanitization actions would take place:
 
   - In headers: "authorization" header value will be sanitized and would be sent to the Bearer dashboard as "authorization: [FILTERED]"
   - In query string parameters: "authorization" query parameter value will be sanitized, and in the Bearer dashboard your URL will look like: "http://www.example.com/auth?authorization=[FILTERED]"
@@ -82,6 +88,6 @@ An example using the default values is as follows:
 
 ### FAQ
 
-**Question:** My project already have Symfony HttpClient, need I install php curl extension ?
+**Question:** My project uses the Symfony HttpClient, do I need to install the PHP cURL extension?
 
-**Answer:** Yes, Bearer Agent only handle curl requests so you need to enable the extension.
+**Answer:** Yes, Bearer Agent only handles cURL requests so you need to enable the extension.
