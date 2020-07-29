@@ -63,22 +63,24 @@ class SetFilter extends Filter
 	 */
 	public function match(ReportLog $log): bool
 	{
-		$filters = array_combine($this->getChildHashes(), array_map(function ($hash) {
+		$filters = array_combine($this->getChildHashes() ?? [], array_map(function ($hash) {
 				return Configuration::get()->getFilter($hash);
-			}, $this->getChildHashes())
+			}, $this->getChildHashes() ?? [])
 		);
 
-		$filters = array_combine($this->getChildHashes(), array_map(function (Filter $filter) use($log) {
+		$filters = array_combine(
+			$this->getChildHashes() ?? [],
+			array_map(function (Filter $filter) use($log) {
 				return $filter->match($log);
 			}, $filters)
 		);
 
-		$filters = array_filter($filters);
+		$filters = array_filter(is_array($filters) ? $filters : []);
 		if($this->getOperator() === FilterSetOperator::ALL) {
-			return count($filters) === count($this->getChildHashes());
+			return count($filters ?? []) === count($this->getChildHashes()  ?? []);
 		}
 
-		return count($filters) > 0;
+		return count($filters ?? []) > 0;
 	}
 
 	/**

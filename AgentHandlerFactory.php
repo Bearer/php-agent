@@ -68,7 +68,7 @@ class AgentHandlerFactory
 	 */
 	private static function rename(string $method): bool
 	{
-		return runkit7_function_rename($method, "base_" . $method);
+		return \runkit7_function_rename($method, "base_" . $method);
 	}
 
 	/**
@@ -88,7 +88,7 @@ class AgentHandlerFactory
 
 		$handler_method = $reflection_class->getMethod('__invoke');
 
-		return runkit7_function_add($method,
+		return \runkit7_function_add($method,
 			self::getParametersString($handler_method, true),
 			"return (new $class())(" . self::getParametersString($handler_method) . ");"
 		);
