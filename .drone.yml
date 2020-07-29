@@ -1,0 +1,42 @@
+kind: pipeline
+name: PHP Agent - Build and Test - PHP 7.2
+
+steps:
+  - name: install dependencies
+    image: php:7.2-fpm
+    commands:
+      - ./.drone/bin/install_runkit
+      - ./.drone/bin/install_composer
+      - ./composer.phar install
+  - name: test
+    image: php:7.2-fpm
+    commands:
+      - ./.drone/bin/install_runkit
+      - ./vendor/bin/phpunit
+
+trigger:
+  event:
+    - pull_request
+    - push
+
+---
+kind: pipeline
+name: PHP Agent - Build and Test - Python 7.4
+
+steps:
+  - name: install dependencies
+    image: php:7.4-fpm
+    commands:
+      - ./.drone/bin/install_runkit
+      - ./.drone/bin/install_composer
+      - ./composer.phar install
+  - name: test
+    image: php:7.4-fpm
+    commands:
+      - ./.drone/bin/install_runkit
+      - ./vendor/bin/phpunit
+
+trigger:
+  event:
+    - pull_request
+    - push

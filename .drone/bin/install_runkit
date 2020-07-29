@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+ini_filename=/usr/local/etc/php/conf.d/ext-runkit7.ini
+
+touch $ini_filename
+pear config-set php_ini $ini_filename
+pecl install "channel://pecl.php.net/runkit7-3.1.0a1"
+pear config-set php_ini ""
+echo "runkit.internal_override=true" >> $ini_filename
