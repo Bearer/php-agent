@@ -110,20 +110,20 @@ class Configuration
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	public function getEnvironment(): string
+	public function getEnvironment(): ?string
 	{
 		return $this->environment;
 	}
 
 	/**
-	 * @param string $environment
+	 * @param string|null $environment
 	 * @return Configuration
 	 */
-	public function setEnvironment(string $environment): self
+	public function setEnvironment(?string $environment): self
 	{
-		$this->environment = $environment;
+		$this->environment = $environment ? strtolower($environment) : null;
 
 		return $this;
 	}

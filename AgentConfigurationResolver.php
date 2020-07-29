@@ -38,7 +38,7 @@ class AgentConfigurationResolver
 				->setAllowedTypes('debug', 'bool')
 				->setAllowedTypes('secretKey', ['string', 'null'])
 				->setAllowedTypes('verbose', 'bool')
-				->setAllowedTypes('environment', 'string')
+				->setAllowedTypes('environment', ['string', 'null'])
 				->setAllowedTypes('disabled', 'bool')
 				->setAllowedTypes('stripSensitiveKeys', ['string', 'null'])
 				->setAllowedTypes('stripSensitiveRegex', ['string', 'null'])
