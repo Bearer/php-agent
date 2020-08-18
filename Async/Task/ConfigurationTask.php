@@ -36,7 +36,7 @@ class ConfigurationTask extends AbstractTask
 	/**
 	 * @return bool
 	 */
-	public function isLoad(): bool
+	public function isLoad()
 	{
 		return $this->data !== null;
 	}
@@ -44,14 +44,16 @@ class ConfigurationTask extends AbstractTask
 	/**
 	 * @return callable
 	 */
-	public function __invoke(): callable
+	public function __invoke()
 	{
 		$configuration = Configuration::get();
-		$configuration_data = (new ConfigurationSerializer())($configuration);
+		$serializer = new ConfigurationSerializer();
+
+		$configuration_data = $serializer($configuration);
 
 		return function () use($configuration, $configuration_data) {
 			$ch = curl_init(sprintf("%s/config", $configuration->getConfigHost()));
-			base_curl_setopt_array($ch, [
+			curl_setopt_array($ch, [
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_POSTFIELDS => json_encode($configuration_data),
 				CURLOPT_HTTPHEADER => [
@@ -60,14 +62,14 @@ class ConfigurationTask extends AbstractTask
 				]
 			]);
 
-			return base_curl_exec($ch);
+			return curl_exec($ch);
 		};
 	}
 
 	/**
 	 * @param $json
 	 */
-	public function then($json): void
+	public function then($json)
 	{
 		$data = json_decode($json, true);
 		if($data !== false) {
@@ -80,7 +82,7 @@ class ConfigurationTask extends AbstractTask
 	/**
 	 * @return array|null
 	 */
-	public function getData(): ?array
+	public function getData()
 	{
 		return $this->data;
 	}
@@ -88,7 +90,7 @@ class ConfigurationTask extends AbstractTask
 	/**
 	 * @return int
 	 */
-	public function sleep(): int
+	public function sleep()
 	{
 		return 5;
 	}

@@ -13,7 +13,7 @@ abstract class AbstractTask
 	/**
 	 * @return callable
 	 */
-	public abstract function __invoke(): callable;
+	public abstract function __invoke();
 
 	/**
 	 * @return $this
@@ -27,10 +27,11 @@ abstract class AbstractTask
 		Agent::verbose('Task', 'run', static::class);
 
 		try {
-			$output = ($this())();
+			$method = $this();
+			$output = $method();
 			$this->then($output);
 		} catch (\Exception $e) {
-			$this->catch($e);
+			$this->error($e);
 		}
 
 		return $this;
@@ -39,7 +40,7 @@ abstract class AbstractTask
 	/**
 	 * @return bool
 	 */
-	public function prevent(): bool
+	public function prevent()
 	{
 		return false;
 	}
@@ -47,7 +48,7 @@ abstract class AbstractTask
 	/**
 	 * @param $output
 	 */
-	public function then($output): void
+	public function then($output)
 	{
 
 	}
@@ -55,7 +56,7 @@ abstract class AbstractTask
 	/**
 	 * @param \Exception $e
 	 */
-	public function catch(\Exception $e): void
+	public function error($e)
 	{
 		Agent::verbose('Task - ' . static::class, 'error', $e->getMessage());
 	}

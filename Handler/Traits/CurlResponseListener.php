@@ -13,15 +13,17 @@ trait CurlResponseListener
 	/**
 	 * @param $ch
 	 */
-	private function addHeaderListener($ch): void
+	private static function addHeaderListener($ch)
 	{
-		curl_setopt($ch, CURLOPT_HEADERFUNCTION, static function ($ich, string $data) use ($ch): int {
+		curl_setopt($ch, CURLOPT_HEADERFUNCTION, static function ($ich, $data) use ($ch) {
 			$request = CurlRequest::get($ch);
 
 			$request->getResponse()->addHeader($ich, $data);
 
 			if ($request->hasOption(CURLOPT_HEADERFUNCTION)) {
-				$request->getOptions()[CURLOPT_HEADERFUNCTION]($ich, $data);
+				$function = $request->getOptions()[CURLOPT_HEADERFUNCTION];
+
+				return $function($ich, $data);
 			}
 
 			return \strlen($data);
@@ -31,15 +33,17 @@ trait CurlResponseListener
 	/**
 	 * @param $ch
 	 */
-	private function addDataListener($ch): void
+	private static function addDataListener($ch)
 	{
-		curl_setopt($ch, CURLOPT_WRITEFUNCTION, static function ($ich, string $data) use ($ch) {
+		curl_setopt($ch, CURLOPT_WRITEFUNCTION, static function ($ich, $data) use ($ch) {
 			$request = CurlRequest::get($ch);
 
 			$request->getResponse()->addData($data);
 
 			if ($request->hasOption(CURLOPT_WRITEFUNCTION)) {
-				$request->getOptions()[CURLOPT_WRITEFUNCTION]($ich, $data);
+				$function = $request->getOptions()[CURLOPT_WRITEFUNCTION];
+
+				return $function($ich, $data);
 			}
 			return \strlen($data);
 		});

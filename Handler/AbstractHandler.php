@@ -11,10 +11,6 @@ use Bearer\Async\Task\ReportTask;
  */
 abstract class AbstractHandler
 {
-	/**
-	 * @return string
-	 */
-	public abstract static function getMethod(): string;
 
 	/**
 	 * @param $ch
@@ -22,7 +18,7 @@ abstract class AbstractHandler
 	 * @param null $response
 	 * @return void
 	 */
-	protected function report($ch): void
+	protected static function report($ch)
 	{
 		Agent::verbose('Request', 'catched', intval($ch));
 

@@ -17,7 +17,7 @@ class ShaPayloadSerializer
 	 * @param bool $hash
 	 * @return array|string|null
 	 */
-	public function __invoke(?ShaPayload $data, bool $hash = true)
+	public function __invoke($data, $hash = true)
 	{
 		if ($data === null) {
 			return null;

@@ -20,7 +20,7 @@ class RegularExpression
     /**
      * @return string
      */
-    public function getValue(): string
+    public function getValue()
     {
         return $this->value;
     }
@@ -29,7 +29,7 @@ class RegularExpression
      * @param string $value
      * @return RegularExpression
      */
-    public function setValue(string $value): RegularExpression
+    public function setValue($value)
     {
         $this->value = $value;
 
@@ -39,7 +39,7 @@ class RegularExpression
     /**
      * @return string
      */
-    public function getFlags(): string
+    public function getFlags()
     {
         return $this->flags;
     }
@@ -48,7 +48,7 @@ class RegularExpression
      * @param string $flags
      * @return RegularExpression
      */
-    public function setFlags(string $flags): RegularExpression
+    public function setFlags($flags)
     {
         $this->flags = $flags;
 

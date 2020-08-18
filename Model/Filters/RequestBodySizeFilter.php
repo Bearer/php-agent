@@ -20,7 +20,7 @@ class RequestBodySizeFilter extends RangeFilter
 	 * @param ReportLog $log
 	 * @return int|null
 	 */
-	protected function getValue(ReportLog $log): ?int
+	protected function getValue($log)
 	{
 		$body = $log->getRequestBody();
 

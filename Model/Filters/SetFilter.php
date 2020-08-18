@@ -31,7 +31,7 @@ class SetFilter extends Filter
 	/**
 	 * @return string
 	 */
-	public function getOperator(): string
+	public function getOperator()
 	{
 		return $this->operator;
 	}
@@ -40,7 +40,7 @@ class SetFilter extends Filter
 	 * @param string $operator
 	 * @return SetFilter
 	 */
-	public function setOperator(string $operator): SetFilter
+	public function setOperator($operator)
 	{
 		$this->operator = $operator;
 		return $this;
@@ -50,7 +50,7 @@ class SetFilter extends Filter
 	 * @param string $hash
 	 * @return $this
 	 */
-	public function addChildHash(string $hash): SetFilter
+	public function addChildHash($hash)
 	{
 		$this->childHashes[] = $hash;
 
@@ -61,15 +61,17 @@ class SetFilter extends Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public function match(ReportLog $log): bool
+	public function match($log)
 	{
-		$filters = array_combine($this->getChildHashes() ?? [], array_map(function ($hash) {
+		$v1 = $this->getChildHashes() !== null ? $this->getChildHashes() : [];
+
+		$filters = array_combine($v1, array_map(function ($hash) {
 				return Configuration::get()->getFilter($hash);
-			}, $this->getChildHashes() ?? [])
+			}, $v1)
 		);
 
 		$filters = array_combine(
-			array_unique($this->getChildHashes() ?? []),
+			array_unique($v1),
 			array_map(function (Filter $filter) use($log) {
 				return $filter->match($log);
 			}, $filters)
@@ -77,16 +79,16 @@ class SetFilter extends Filter
 
 		$filters = array_filter(is_array($filters) ? $filters : []);
 		if($this->getOperator() === FilterSetOperator::ALL) {
-			return count($filters ?? []) === count($this->getChildHashes()  ?? []);
+			return count(is_array($filters) ? $filters : []) === count($v1);
 		}
 
-		return count($filters ?? []) > 0;
+		return count(is_array($filters) ? $filters : []) > 0;
 	}
 
 	/**
 	 * @return string[]
 	 */
-	public function getChildHashes(): array
+	public function getChildHashes()
 	{
 		return $this->childHashes;
 	}
@@ -95,7 +97,7 @@ class SetFilter extends Filter
 	 * @param string[] $childHashes
 	 * @return SetFilter
 	 */
-	public function setChildHashes(array $childHashes): SetFilter
+	public function setChildHashes($childHashes)
 	{
 		$this->childHashes = $childHashes;
 

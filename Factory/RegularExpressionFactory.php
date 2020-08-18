@@ -14,7 +14,7 @@ class RegularExpressionFactory
      * @param array $data
      * @return RegularExpression|null
      */
-    public function __invoke(?array $data = []): ?RegularExpression
+    public function __invoke($data = [])
     {
     	if (empty($data) || $data === null) {
     		return null;
@@ -22,7 +22,7 @@ class RegularExpressionFactory
 
         $regEx = new RegularExpression();
     	$regEx->setValue($data['value']);
-        $regEx->setFlags($data['flags'] ?? 'i');
+        $regEx->setFlags(isset($data['flags']) ? $data['flags'] : 'i');
 
         return $regEx;
     }

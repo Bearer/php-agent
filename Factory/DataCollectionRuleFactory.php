@@ -14,13 +14,15 @@ class DataCollectionRuleFactory
 	 * @param array $data
 	 * @return DataCollectionRule
 	 */
-	public function __invoke(array $data): DataCollectionRule
+	public function __invoke($data)
 	{
 		$dataCollectionRule = new DataCollectionRule();
 
-		$dataCollectionRule->setFilterHash($data['filterHash'] ?? null);
+		$dynamicConfig = new DynamicConfigFactory();
+
+		$dataCollectionRule->setFilterHash(isset($data['filterHash']) ? $data['filterHash'] : null);
 		$dataCollectionRule->setParams($data['params']);
-		$dataCollectionRule->setConfig(isset($data['config']) ? (new DynamicConfigFactory())($data['config']) : null);
+		$dataCollectionRule->setConfig(isset($data['config']) ? $dynamicConfig($data['config']) : null);
 		$dataCollectionRule->setSignature($data['signature']);
 
 		return $dataCollectionRule;

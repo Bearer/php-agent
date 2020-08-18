@@ -16,9 +16,9 @@ class Configuration
 	private static $instance = null;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
-	private $environment;
+	private $environment = null;
 
 	/**
 	 * @var bool
@@ -96,14 +96,14 @@ class Configuration
 	 * @param array $options
 	 * @return static
 	 */
-	public static function get(array $options = []): self
+	public static function get($options = [])
 	{
 		if (!empty($options)) {
 			self::$instance = AgentConfigurationResolver::resolve($options);
 		}
 
 		if (self::$instance === null) {
-			throw new \RuntimeException('Configuration need to be initialize');
+			self::$instance = new Configuration();
 		}
 
 		return self::$instance;
@@ -121,7 +121,7 @@ class Configuration
 	 * @param string|null $environment
 	 * @return Configuration
 	 */
-	public function setEnvironment(?string $environment): self
+	public function setEnvironment($environment)
 	{
 		$this->environment = $environment ? strtolower($environment) : null;
 
@@ -131,7 +131,7 @@ class Configuration
 	/**
 	 * @return string|null
 	 */
-	public function getSecretKey(): ?string
+	public function getSecretKey()
 	{
 		return $this->secretKey;
 	}
@@ -140,7 +140,7 @@ class Configuration
 	 * @param string|null $secretKey
 	 * @return Configuration
 	 */
-	public function setSecretKey(?string $secretKey): self
+	public function setSecretKey($secretKey)
 	{
 		$this->secretKey = $secretKey;
 
@@ -150,7 +150,7 @@ class Configuration
 	/**
 	 * @return bool
 	 */
-	public function isDebug(): bool
+	public function isDebug()
 	{
 		return $this->debug;
 	}
@@ -159,7 +159,7 @@ class Configuration
 	 * @param bool $debug
 	 * @return Configuration
 	 */
-	public function setDebug(bool $debug): Configuration
+	public function setDebug($debug)
 	{
 		$this->debug = $debug;
 		return $this;
@@ -168,7 +168,7 @@ class Configuration
 	/**
 	 * @return bool
 	 */
-	public function isDisabled(): bool
+	public function isDisabled()
 	{
 		return $this->disabled;
 	}
@@ -177,7 +177,7 @@ class Configuration
 	 * @param bool $disabled
 	 * @return Configuration
 	 */
-	public function setDisabled(bool $disabled): self
+	public function setDisabled($disabled)
 	{
 		$this->disabled = $disabled;
 
@@ -187,7 +187,7 @@ class Configuration
 	/**
 	 * @return bool
 	 */
-	public function isVerbose(): bool
+	public function isVerbose()
 	{
 		return $this->verbose;
 	}
@@ -196,7 +196,7 @@ class Configuration
 	 * @param bool $verbose
 	 * @return Configuration
 	 */
-	public function setVerbose(bool $verbose): Configuration
+	public function setVerbose($verbose)
 	{
 		$this->verbose = $verbose;
 		return $this;
@@ -205,7 +205,7 @@ class Configuration
 	/**
 	 * @return array
 	 */
-	public function getFilters(): array
+	public function getFilters()
 	{
 		return $this->filters;
 	}
@@ -215,7 +215,7 @@ class Configuration
 	 * @param bool|null $reset
 	 * @return $this
 	 */
-	public function setFilters(array $filters, ?bool $reset = false): self
+	public function setFilters($filters, $reset = false)
 	{
 		if ($reset) {
 			$this->filters = [];
@@ -236,15 +236,15 @@ class Configuration
 	 * @param string $hash
 	 * @return Filter|null
 	 */
-	public function getFilter(string $hash): ?Filter
+	public function getFilter($hash)
 	{
-		return $this->filters[$hash] ?? null;
+		return isset($this->filters[$hash]) ? $this->filters[$hash] : null;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getConfigHost(): string
+	public function getConfigHost()
 	{
 		return $this->configHost;
 	}
@@ -253,7 +253,7 @@ class Configuration
 	 * @param string $configHost
 	 * @return Configuration
 	 */
-	public function setConfigHost(string $configHost): self
+	public function setConfigHost($configHost)
 	{
 		$this->configHost = $configHost;
 
@@ -263,7 +263,7 @@ class Configuration
 	/**
 	 * @return string
 	 */
-	public function getReportHost(): string
+	public function getReportHost()
 	{
 		return $this->reportHost;
 	}
@@ -272,7 +272,7 @@ class Configuration
 	 * @param string $reportHost
 	 * @return Configuration
 	 */
-	public function setReportHost(string $reportHost): self
+	public function setReportHost($reportHost)
 	{
 		$this->reportHost = $reportHost;
 
@@ -299,7 +299,7 @@ class Configuration
 	/**
 	 * @return string[]
 	 */
-	public function getStripSensitiveRegex(): array
+	public function getStripSensitiveRegex()
 	{
 		return $this->stripSensitiveRegex;
 	}
@@ -309,7 +309,7 @@ class Configuration
 	 * @param bool|null $reset
 	 * @return $this
 	 */
-	public function setStripSensitiveRegex(array $stripSensitiveRegex, ?bool $reset = false): Configuration
+	public function setStripSensitiveRegex($stripSensitiveRegex, $reset = false)
 	{
 		if ($reset) {
 			$this->stripSensitiveRegex = [];
@@ -324,7 +324,7 @@ class Configuration
 	 * @param string $data
 	 * @return bool
 	 */
-	public function matchStripSensitiveKeys(string $data): bool
+	public function matchStripSensitiveKeys($data)
 	{
 		/** @var RegularExpression $expression */
 		foreach ($this->getStripSensitiveKeys() as $expression) {
@@ -339,7 +339,7 @@ class Configuration
 	/**
 	 * @return string[]
 	 */
-	public function getStripSensitiveKeys(): array
+	public function getStripSensitiveKeys()
 	{
 		return $this->stripSensitiveKeys;
 	}
@@ -349,7 +349,7 @@ class Configuration
 	 * @param bool|null $reset
 	 * @return $this
 	 */
-	public function setStripSensitiveKeys(array $stripSensitiveKeys, ?bool $reset = false): Configuration
+	public function setStripSensitiveKeys($stripSensitiveKeys, $reset = false)
 	{
 		if ($reset) {
 			$this->stripSensitiveKeys = [];
@@ -363,7 +363,7 @@ class Configuration
 	/**
 	 * @return bool
 	 */
-	public function isStripSensitiveData(): bool
+	public function isStripSensitiveData()
 	{
 		return $this->stripSensitiveData;
 	}
@@ -372,7 +372,7 @@ class Configuration
 	 * @param bool $stripSensitiveData
 	 * @return Configuration
 	 */
-	public function setStripSensitiveData(bool $stripSensitiveData): Configuration
+	public function setStripSensitiveData($stripSensitiveData)
 	{
 		$this->stripSensitiveData = $stripSensitiveData;
 		return $this;
@@ -381,9 +381,9 @@ class Configuration
 	/**
 	 * @return array
 	 */
-	public function getActiveDataCollectionRules(): array
+	public function getActiveDataCollectionRules()
 	{
-		return array_filter($this->getDataCollectionRules(), function (DataCollectionRule $rule) {
+		return array_filter($this->getDataCollectionRules(), function ($rule) {
 			return $rule->getConfig() === null ? true : $rule->getConfig()->isActive();
 		});
 	}
@@ -391,7 +391,7 @@ class Configuration
 	/**
 	 * @return array
 	 */
-	public function getDataCollectionRules(): array
+	public function getDataCollectionRules()
 	{
 		return $this->dataCollectionRules;
 	}
@@ -401,7 +401,7 @@ class Configuration
 	 * @param bool|null $reset
 	 * @return Configuration
 	 */
-	public function setDataCollectionRules(array $dataCollectionRules, ?bool $reset = false): Configuration
+	public function setDataCollectionRules($dataCollectionRules, $reset = false)
 	{
 		if ($reset) {
 			$this->dataCollectionRules = [];

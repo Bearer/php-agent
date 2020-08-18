@@ -11,7 +11,7 @@ class FirstChunk extends DataChunk
 	/**
 	 * @return bool
 	 */
-	public function isFirst(): bool
+	public function isFirst()
 	{
 		return true;
 	}

@@ -16,17 +16,21 @@ class ReportFactory
 	 * @param CurlRequest $request
 	 * @return Report
 	 */
-	public function __invoke(CurlRequest $request): Report
+	public function __invoke($request)
 	{
 		$report = new Report();
 
+		$agent = new AgentFactory();
+		$runtime = new RuntimeFactory();
+		$reportLog = new ReportLogFactory();
+
 		$report->setSecretKey(Configuration::get()->getSecretKey());
 		$report->setAppEnvironment(Configuration::get()->getEnvironment());
-		$report->setAgent((new AgentFactory())());
-		$report->setRuntime((new RuntimeFactory())());
+		$report->setAgent($agent());
+		$report->setRuntime($runtime());
 
 		$report->setLogs([
-			(new ReportLogFactory())($request)
+			$reportLog($request)
 		]);
 
 		return $report;

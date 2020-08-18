@@ -14,7 +14,7 @@ class ShaPayloadTypeNumber extends AbstractShaPayloadType
 	 * @param mixed $data
 	 * @return int
 	 */
-	public static function vote($data): int
+	public static function vote($data)
 	{
 		return is_integer($data) ? 2 : 0;
 	}
@@ -22,7 +22,7 @@ class ShaPayloadTypeNumber extends AbstractShaPayloadType
 	/**
 	 * @return int
 	 */
-	public function getType(): int
+	public function getType()
 	{
 		return ShaPayloadType::NUMBER;
 	}

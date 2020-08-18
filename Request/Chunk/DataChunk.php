@@ -23,7 +23,7 @@ class DataChunk implements ChunkInterface
 	 * @param int $offset
 	 * @param string $content
 	 */
-	public function __construct(int $offset = 0, string $content = '')
+	public function __construct($offset = 0, $content = '')
 	{
 		$this->offset = $offset;
 		$this->content = $content;
@@ -32,7 +32,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function isTimeout(): bool
+	public function isTimeout()
 	{
 		return false;
 	}
@@ -40,7 +40,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function isFirst(): bool
+	public function isFirst()
 	{
 		return false;
 	}
@@ -48,7 +48,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function isLast(): bool
+	public function isLast()
 	{
 		return false;
 	}
@@ -56,7 +56,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getInformationalStatus(): ?array
+	public function getInformationalStatus()
 	{
 		return null;
 	}
@@ -64,7 +64,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getContent(): string
+	public function getContent()
 	{
 		return $this->content;
 	}
@@ -72,7 +72,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getOffset(): int
+	public function getOffset()
 	{
 		return $this->offset;
 	}
@@ -80,7 +80,7 @@ class DataChunk implements ChunkInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getError(): ?string
+	public function getError()
 	{
 		return null;
 	}

@@ -14,7 +14,7 @@ class DataCollectionRuleSerializer
 	 * @param DataCollectionRule $dataCollectionRule
 	 * @return array
 	 */
-	public function __invoke(DataCollectionRule $dataCollectionRule): array
+	public function __invoke($dataCollectionRule)
 	{
 		return [
 			'filterHash' => $dataCollectionRule->getFilterHash(),

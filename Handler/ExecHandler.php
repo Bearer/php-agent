@@ -15,31 +15,24 @@ class ExecHandler extends AbstractHandler
 	use CurlResponseListener;
 
 	/**
-	 * @return string
-	 */
-	public static function getMethod(): string
-	{
-		return 'curl_exec';
-	}
-
-	/**
 	 * @param $ch
 	 * @return mixed
 	 */
-	public function __invoke($ch)
+	public static function run($ch)
 	{
-		$this->addHeaderListener($ch);
+		static::addHeaderListener($ch);
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		CurlRequest::get($ch)->addOptions([
 			CurlResponse::CURLINFO_STARTTIME => round(microtime(true) * 1000)
 		]);
 
-		$response = base_curl_exec($ch);
-
+		$response = curl_exec($ch);
 		CurlRequest::get($ch)->getResponse()->setContent($response);
 
-		$this->report($ch);
+		static::report($ch);
+
+		CurlRequest::remove($ch);
 
 		return $response;
 	}

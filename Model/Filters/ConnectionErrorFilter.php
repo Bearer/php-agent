@@ -17,7 +17,7 @@ class ConnectionErrorFilter extends Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public function match(ReportLog $log): bool
+	public function match($log)
 	{
 		return $log->getType() === ReportLogType::ERROR;
 	}

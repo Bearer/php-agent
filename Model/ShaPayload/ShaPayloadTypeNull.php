@@ -14,7 +14,7 @@ class ShaPayloadTypeNull extends AbstractShaPayloadType
 	 * @param mixed $data
 	 * @return int
 	 */
-	public static function vote($data): int
+	public static function vote($data)
 	{
 		return $data === null ? 1 : 0;
 	}
@@ -22,7 +22,7 @@ class ShaPayloadTypeNull extends AbstractShaPayloadType
 	/**
 	 * @return int
 	 */
-	public function getType(): int
+	public function getType()
 	{
 		return ShaPayloadType::NULL;
 	}

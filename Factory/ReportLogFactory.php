@@ -20,7 +20,7 @@ class ReportLogFactory
 	 * @param CurlRequest $request
 	 * @return ReportLog
 	 */
-	public function __invoke(CurlRequest $request): ReportLog
+	public function __invoke($request)
 	{
 		$response = $request->getResponse();
 
@@ -35,9 +35,11 @@ class ReportLogFactory
 		$log->setType($response->isSuccess() ? ReportLogType::SUCCESS : ReportLogType::ERROR);
 		$log->setStageType($response->getStatusCode() === null ? StageType::REQUEST : StageType::BODIES);
 
-		$log->setHostname($response->getUrlInformation()['host'] ?? '');
-		$log->setProtocol($response->getUrlInformation()['scheme'] ?? 'http');
-		$log->setPort(($response->getUrlInformation()['port'] ?? $log->getProtocol()) === 'https' ? 443 : 80);
+		$informations = $response->getUrlInformation();
+
+		$log->setHostname(isset($informations['host']) ? $informations['host'] : '');
+		$log->setProtocol(isset($informations['scheme']) ? $informations['scheme'] : 'http');
+		$log->setPort((isset($informations['port']) ? $informations['port'] : ($log->getProtocol()) === 'https' ? 443 : 80));
 
 		$log->setUrl($response->getUrlInformation()['url']);
 		$log->setMethod($response->getMethod());
@@ -46,13 +48,15 @@ class ReportLogFactory
 
 		$log->setRequestHeaders($response->getRequestHeaders());
 		$log->setRequestBody($response->getRequestBody());
-		$log->setRequestBodyPayloadSha((new ShaPayloadFactory())($log->getRequestBody()));
+
+		$factory = new ShaPayloadFactory();
+		$log->setRequestBodyPayloadSha($factory($log->getRequestBody()));
 
 		if ($log->getType() === ReportLogType::SUCCESS) {
 			$log->setResponseHeaders($response->getResponseHeaders());
 			$log->setResponseBody($response->getResponseBody());
 			$log->setResponseBodySize($response->getResponseBodySize());
-			$log->setResponseBodyPayloadSha((new ShaPayloadFactory())($log->getResponseBody()));
+			$log->setResponseBodyPayloadSha($factory($log->getResponseBody()));
 		}
 
 		if ($log->getType() === ReportLogType::ERROR) {

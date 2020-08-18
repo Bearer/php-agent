@@ -14,11 +14,11 @@ class DynamicConfigFactory
 	 * @param array $data
 	 * @return DynamicConfig
 	 */
-	public function __invoke(array $data): DynamicConfig
+	public function __invoke($data)
 	{
 		$config = new DynamicConfig();
 
-		$config->setActive($data['active'] ?? true);
+		$config->setActive(isset($data['active']) ? $data['active'] : true);
 		$config->setLogLevel($data['logLevel']);
 
 		return $config;

@@ -36,7 +36,7 @@ class Report
 	/**
 	 * @return string
 	 */
-	public function getSecretKey(): string
+	public function getSecretKey()
 	{
 		return $this->secretKey;
 	}
@@ -45,7 +45,7 @@ class Report
 	 * @param string $secretKey
 	 * @return Report
 	 */
-	public function setSecretKey(string $secretKey): Report
+	public function setSecretKey($secretKey)
 	{
 		$this->secretKey = $secretKey;
 		return $this;
@@ -54,7 +54,7 @@ class Report
 	/**
 	 * @return string
 	 */
-	public function getAppEnvironment(): string
+	public function getAppEnvironment()
 	{
 		return $this->appEnvironment;
 	}
@@ -63,7 +63,7 @@ class Report
 	 * @param string $appEnvironment
 	 * @return Report
 	 */
-	public function setAppEnvironment(string $appEnvironment): Report
+	public function setAppEnvironment($appEnvironment)
 	{
 		$this->appEnvironment = base64_encode($appEnvironment);
 		return $this;
@@ -72,7 +72,7 @@ class Report
 	/**
 	 * @return Runtime
 	 */
-	public function getRuntime(): Runtime
+	public function getRuntime()
 	{
 		return $this->runtime;
 	}
@@ -81,7 +81,7 @@ class Report
 	 * @param Runtime $runtime
 	 * @return Report
 	 */
-	public function setRuntime(Runtime $runtime): Report
+	public function setRuntime($runtime)
 	{
 		$this->runtime = $runtime;
 		return $this;

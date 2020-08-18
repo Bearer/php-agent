@@ -8,34 +8,29 @@ namespace Bearer\Request;
  */
 class CurlRequest
 {
-	public const STATE_WAITING = 'waiting';
-	public const STATE_SEND = 'sended';
+	const STATE_WAITING = 'waiting';
+	const STATE_SEND = 'sended';
 
 	/**
 	 * @var array
 	 */
 	private static $instances = [];
-
-	/**
-	 * @var int|null
-	 */
-	private $parent = null;
-
-	/**
-	 * @var array
-	 */
-	private $options = [];
-
-	/**
-	 * @var CurlResponse|null
-	 */
-	private $response = null;
-
 	/**
 	 * @var resource
 	 */
 	public $ch;
-
+	/**
+	 * @var int|null
+	 */
+	private $parent = null;
+	/**
+	 * @var array
+	 */
+	private $options = [];
+	/**
+	 * @var CurlResponse|null
+	 */
+	private $response = null;
 	/**
 	 * @var string
 	 */
@@ -54,12 +49,22 @@ class CurlRequest
 	 * @param $resource
 	 * @return static
 	 */
-	public static function get($resource): self
+	public static function get($resource)
 	{
 		if (!isset(self::$instances[intval($resource)])) {
 			self::$instances[intval($resource)] = new CurlRequest($resource);
 		}
 		return self::$instances[intval($resource)];
+	}
+
+	/**
+	 * @param $resource
+	 */
+	public static function remove($resource)
+	{
+		if (isset(self::$instances[intval($resource)])) {
+			unset(self::$instances[intval($resource)]);
+		}
 	}
 
 	/**
@@ -74,9 +79,11 @@ class CurlRequest
 	 * @param array $options
 	 * @return $this
 	 */
-	public function addOptions(array $options): self
+	public function addOptions($options)
 	{
-		$this->options += $options;
+		foreach ($options as $k => $v) {
+			$this->options[$k] = $v;
+		}
 
 		return $this;
 	}
@@ -85,7 +92,7 @@ class CurlRequest
 	 * @param string $attr
 	 * @return bool
 	 */
-	public function hasOption(string $attr): bool
+	public function hasOption($attr)
 	{
 		return isset($this->getOptions()[$attr]);
 	}
@@ -93,7 +100,7 @@ class CurlRequest
 	/**
 	 * @return array
 	 */
-	public function getOptions(): array
+	public function getOptions()
 	{
 		$options = $this->options;
 		if ($this->getParent() !== null) {
@@ -107,7 +114,7 @@ class CurlRequest
 	/**
 	 * @return $this|null
 	 */
-	public function getParent(): ?self
+	public function getParent()
 	{
 		return $this->parent === null ? null : self::$instances[$this->parent];
 	}
@@ -116,7 +123,7 @@ class CurlRequest
 	 * @param $resource
 	 * @return $this
 	 */
-	public function setParent($resource): self
+	public function setParent($resource)
 	{
 		$this->parent = intval($resource);
 
@@ -130,7 +137,7 @@ class CurlRequest
 	/**
 	 * @return CurlResponse
 	 */
-	public function getResponse(): CurlResponse
+	public function getResponse()
 	{
 		if ($this->response === null) {
 			$this->response = new CurlResponse($this);
@@ -142,7 +149,7 @@ class CurlRequest
 	/**
 	 * @return bool
 	 */
-	public function isSend(): bool
+	public function isSend()
 	{
 		return $this->state === self::STATE_SEND;
 	}
@@ -152,7 +159,7 @@ class CurlRequest
 	 *
 	 * @return CurlRequest
 	 */
-	public function setState(string $state): CurlRequest
+	public function setState($state)
 	{
 		if (in_array($state, [self::STATE_WAITING, self::STATE_SEND])) {
 			$this->state = $state;

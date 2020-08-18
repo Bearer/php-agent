@@ -14,14 +14,14 @@ class RangeFactory
 	 * @param array $data
 	 * @return Range
 	 */
-	public function __invoke(array $data): Range
+	public function __invoke($data)
 	{
 		$range = new Range();
 
-		$range->setFrom($data['from'] ?? null);
-		$range->setTo($data['to'] ?? null);
-		$range->setFromExclusive($data['fromExclusive'] ?? false);
-		$range->setToExclusive($data['toExclusive'] ?? false);
+		$range->setFrom(isset($data['from']) ? $data['from'] : null);
+		$range->setTo(isset($data['to']) ? $data['to'] : null);
+		$range->setFromExclusive(isset($data['fromExclusive']) ? $data['fromExclusive'] : false);
+		$range->setToExclusive(isset($data['toExclusive']) ? $data['toExclusive'] : false);
 
 		return $range;
 	}

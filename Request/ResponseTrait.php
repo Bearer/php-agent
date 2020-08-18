@@ -55,7 +55,7 @@ trait ResponseTrait
 	 * @param $data
 	 * @return $this
 	 */
-	public function addData($data): self
+	public function addData($data)
 	{
 		$this->data[] = $data;
 
@@ -66,10 +66,10 @@ trait ResponseTrait
 	 * @param resource $ch
 	 * @param string $data
 	 */
-	public function addHeader($ch, string $data): void
+	public function addHeader($ch, $data)
 	{
 		if ($this->http_method === null) {
-			$this->http_method = $this->request->getOptions()[CURLOPT_CUSTOMREQUEST] ?? null;
+			$this->http_method = isset($this->request->getOptions()[CURLOPT_CUSTOMREQUEST]) ? $this->request->getOptions()[CURLOPT_CUSTOMREQUEST] : null;
 		}
 
 		if ("\r\n" !== $data) {
@@ -127,7 +127,7 @@ trait ResponseTrait
 	/**
 	 * @return string|null
 	 */
-	public function getContent(): ?string
+	public function getContent()
 	{
 		if ($this->content === null) {
 			$content = null;
@@ -165,7 +165,7 @@ trait ResponseTrait
 	/**
 	 * @param null $content
 	 */
-	public function setContent($content): void
+	public function setContent($content)
 	{
 		$this->content = $content;
 	}
@@ -181,7 +181,7 @@ trait ResponseTrait
 			return;
 		}
 
-		while ($this->data ?? false) {
+		while ($this->data !== null ? $this->data : false) {
 			if (\is_string($chunk = array_shift($this->data))) {
 				if (null !== $this->inflate && false === $chunk = @inflate_add($this->inflate, $chunk)) {
 					$this->data = [null, new TransportException('Error while processing content unencoding.')];

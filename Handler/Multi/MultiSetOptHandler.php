@@ -4,7 +4,6 @@ namespace Bearer\Handler\Multi;
 
 use Bearer\Request\CurlRequest;
 use Bearer\Handler\AbstractHandler;
-use Bearer\DataStorage\CurlDataStorage;
 
 /**
  * Class MultiSetOptHandler
@@ -12,13 +11,6 @@ use Bearer\DataStorage\CurlDataStorage;
  */
 class MultiSetOptHandler extends AbstractHandler
 {
-    /**
-     * @return string
-     */
-    public static function getMethod(): string
-    {
-        return 'curl_multi_setopt';
-    }
 
     /**
      * @param resource $mh
@@ -26,9 +18,9 @@ class MultiSetOptHandler extends AbstractHandler
      * @param mixed $value
      * @return mixed
      */
-    public function __invoke($mh, $option, $value)
+    public static function run($mh, $option, $value)
     {
     	CurlRequest::get($mh)->addOptions([$option => $value]);
-        return base_curl_multi_setopt($mh, $option, $value);
+        return curl_multi_setopt($mh, $option, $value);
     }
 }

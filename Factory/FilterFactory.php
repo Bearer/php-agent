@@ -30,7 +30,7 @@ class FilterFactory
 	/**
 	 * @var array
 	 */
-	private const mapping = [
+	const mapping = [
 		FilterType::NOT => NotFilter::class,
 		FilterType::FILTER_SET => SetFilter::class,
 		FilterType::DOMAIN => DomainFilter::class,
@@ -51,9 +51,11 @@ class FilterFactory
 	 * @param array $data
 	 * @return Filter|null
 	 */
-	public function __invoke(array $data): ?Filter
+	public function __invoke($data)
 	{
-		$class = self::mapping[$data['typeName']] ?? null;
+		$mapping = self::mapping;
+
+		$class = isset($data['typeName'], $mapping[$data['typeName']]) ? $mapping[$data['typeName']] : null;
 		if ($class === null) {
 			return null;
 		}
@@ -74,16 +76,19 @@ class FilterFactory
 		}
 
 		if ($filter instanceof DomainFilter || $filter instanceof PathFilter) {
-			$filter->setPattern((new RegularExpressionFactory())($data['pattern']));
+			$factory = new RegularExpressionFactory();
+			$filter->setPattern($factory($data['pattern']));
 		}
 
 		if ((new \ReflectionClass($filter))->isSubclassOf(KeyValueFilter::class)) {
-			$filter->setValuePattern(isset($data['valuePattern']) ? (new RegularExpressionFactory())($data['valuePattern']) : null);
-			$filter->setKeyPattern(isset($data['keyPattern']) ? (new RegularExpressionFactory())($data['keyPattern']) : null);
+			$factory = new RegularExpressionFactory();
+			$filter->setValuePattern(isset($data['valuePattern']) ? $factory($data['valuePattern']) : null);
+			$filter->setKeyPattern(isset($data['keyPattern']) ? $factory($data['keyPattern']) : null);
 		}
 
 		if ((new \ReflectionClass($filter))->isSubclassOf(RangeFilter::class)) {
-			$filter->setRange((new RangeFactory())($data['range']));
+			$factory = new RangeFactory();
+			$filter->setRange($factory($data['range']));
 		}
 
 		return $filter;

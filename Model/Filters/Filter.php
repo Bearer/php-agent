@@ -19,7 +19,7 @@ abstract class Filter
 	/**
 	 * @return string
 	 */
-	public function getTypeName(): string
+	public function getTypeName()
 	{
 		return $this->typeName;
 	}
@@ -28,5 +28,5 @@ abstract class Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public abstract function match(ReportLog $log): bool;
+	public abstract function match($log);
 }

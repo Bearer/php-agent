@@ -20,7 +20,7 @@ class RequestBodyFilter extends KeyValueFilter
 	 * @param ReportLog $log
 	 * @return array
 	 */
-	protected function getMatchParameters(ReportLog $log): array
+	protected function getMatchParameters($log)
 	{
 		$body = $log->getRequestBody();
 		$decode_value = json_decode($body);

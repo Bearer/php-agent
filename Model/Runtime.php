@@ -35,7 +35,7 @@ class Runtime
 	/**
 	 * @return string
 	 */
-	public function getArch(): string
+	public function getArch()
 	{
 		return $this->arch;
 	}
@@ -44,7 +44,7 @@ class Runtime
 	 * @param string $arch
 	 * @return Runtime
 	 */
-	public function setArch(string $arch): Runtime
+	public function setArch($arch)
 	{
 		$this->arch = $arch;
 		return $this;
@@ -53,7 +53,7 @@ class Runtime
 	/**
 	 * @return string
 	 */
-	public function getType(): string
+	public function getType()
 	{
 		return $this->type;
 	}
@@ -62,7 +62,7 @@ class Runtime
 	 * @param string $type
 	 * @return Runtime
 	 */
-	public function setType(string $type): Runtime
+	public function setType($type)
 	{
 		$this->type = $type;
 		return $this;
@@ -71,7 +71,7 @@ class Runtime
 	/**
 	 * @return string
 	 */
-	public function getPlatform(): string
+	public function getPlatform()
 	{
 		return $this->platform;
 	}
@@ -80,7 +80,7 @@ class Runtime
 	 * @param string $platform
 	 * @return Runtime
 	 */
-	public function setPlatform(string $platform): Runtime
+	public function setPlatform($platform)
 	{
 		$this->platform = $platform;
 		return $this;
@@ -89,7 +89,7 @@ class Runtime
 	/**
 	 * @return string
 	 */
-	public function getHostname(): string
+	public function getHostname()
 	{
 		return $this->hostname;
 	}
@@ -98,7 +98,7 @@ class Runtime
 	 * @param string $hostname
 	 * @return Runtime
 	 */
-	public function setHostname(string $hostname): Runtime
+	public function setHostname($hostname)
 	{
 		$this->hostname = $hostname;
 		return $this;
@@ -107,7 +107,7 @@ class Runtime
 	/**
 	 * @return string
 	 */
-	public function getVersion(): string
+	public function getVersion()
 	{
 		return $this->version;
 	}
@@ -116,7 +116,7 @@ class Runtime
 	 * @param string $version
 	 * @return Runtime
 	 */
-	public function setVersion(string $version): Runtime
+	public function setVersion($version)
 	{
 		$this->version = $version;
 		return $this;

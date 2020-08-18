@@ -12,7 +12,7 @@ class HeaderSanitizer extends AbstractSanitizeHandler
 	 * @param array $header
 	 * @return array
 	 */
-	public function __invoke(array $header): array
+	public function __invoke($header)
 	{
 		foreach ($header as $i => $row) {
 			$headers = explode(': ', $row);

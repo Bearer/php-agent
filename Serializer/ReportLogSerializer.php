@@ -17,11 +17,11 @@ class ReportLogSerializer
 	 * @param ReportLog $reportLog
 	 * @return array
 	 */
-	public function __invoke(ReportLog $reportLog): array
+	public function __invoke($reportLog)
 	{
 		$exports = [
 			StageType::CONNECT => [
-				'logLevel' => $reportLog->getLogLevel() ?? LogLevel::DETECTED,
+				'logLevel' => $reportLog->getLogLevel() !== null ? $reportLog->getLogLevel() : LogLevel::DETECTED,
 				'port' => $reportLog->getPort(),
 				'protocol' => $reportLog->getProtocol(),
 				'hostname' => $reportLog->getHostname(),
@@ -59,11 +59,12 @@ class ReportLogSerializer
 			}
 		}
 
-		foreach ($reportLog->getActiveDataCollectionRules() ?? [] as $i => $dataCollectionRule) {
-			$export['activeDataCollectionRules'][$i] = (new DataCollectionRuleSerializer())($dataCollectionRule);
+		foreach ($reportLog->getActiveDataCollectionRules() !== null ? $reportLog->getActiveDataCollectionRules() : [] as $i => $dataCollectionRule) {
+			$serializer = new DataCollectionRuleSerializer();
+			$export['activeDataCollectionRules'][$i] = $serializer($dataCollectionRule);
 		}
 
-		if (($reportLog->getLogLevel() ?? LogLevel::DETECTED) === LogLevel::DETECTED) {
+		if (($reportLog->getLogLevel() !== null ? $reportLog->getLogLevel() : LogLevel::DETECTED) === LogLevel::DETECTED) {
 			return array_filter($export, function ($key) {
 				return in_array($key, [
 					'logLevel',
