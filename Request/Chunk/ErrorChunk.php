@@ -34,7 +34,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @param \Throwable|string $error
 	 */
-	public function __construct(int $offset, $error)
+	public function __construct($offset, $error)
 	{
 		$this->offset = $offset;
 
@@ -42,14 +42,14 @@ class ErrorChunk implements ChunkInterface
 			$this->errorMessage = $error;
 		} else {
 			$this->error = $error;
-			$this->errorMessage = $error->getMessage();
+			$this->errorMessage = method_exists($error, 'getMessage') ? $error->getMessage() : '';
 		}
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function isTimeout(): bool
+	public function isTimeout()
 	{
 		$this->didThrow = true;
 
@@ -63,7 +63,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return bool
 	 */
-	public function isFirst(): bool
+	public function isFirst()
 	{
 		$this->didThrow = true;
 		throw new TransportException($this->errorMessage, 0, $this->error);
@@ -72,7 +72,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return bool
 	 */
-	public function isLast(): bool
+	public function isLast()
 	{
 		$this->didThrow = true;
 		throw new TransportException($this->errorMessage, 0, $this->error);
@@ -81,7 +81,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return array|null
 	 */
-	public function getInformationalStatus(): ?array
+	public function getInformationalStatus()
 	{
 		$this->didThrow = true;
 		throw new TransportException($this->errorMessage, 0, $this->error);
@@ -90,7 +90,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return string
 	 */
-	public function getContent(): string
+	public function getContent()
 	{
 		$this->didThrow = true;
 		throw new TransportException($this->errorMessage, 0, $this->error);
@@ -99,7 +99,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return int
 	 */
-	public function getOffset(): int
+	public function getOffset()
 	{
 		return $this->offset;
 	}
@@ -107,7 +107,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return string|null
 	 */
-	public function getError(): ?string
+	public function getError()
 	{
 		return $this->errorMessage;
 	}
@@ -115,7 +115,7 @@ class ErrorChunk implements ChunkInterface
 	/**
 	 * @return bool Whether the wrapped error has been thrown or not
 	 */
-	public function didThrow(): bool
+	public function didThrow()
 	{
 		return $this->didThrow;
 	}

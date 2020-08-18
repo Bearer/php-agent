@@ -13,7 +13,7 @@ class BodySanitizer extends AbstractSanitizeHandler
 	 * @param array $headers
 	 * @param $size
 	 */
-	public function __invoke($data, array $headers, $size = null)
+	public function __invoke($data, $headers, $size = null)
 	{
 		if ($data === false || $data === null) {
 			return '(no body)';
@@ -58,10 +58,12 @@ class BodySanitizer extends AbstractSanitizeHandler
 	 * @param null $default
 	 * @return string|null
 	 */
-	private function getHeaderValue(array $headers, $attr, $default = null): ?string
+	private function getHeaderValue($headers, $attr, $default = null)
 	{
 		$attr = strtolower($attr);
 
-		return $headers[$attr] ?? ($headers[ucwords($attr, '-')] ?? $default);
+		return isset($headers[$attr]) ? $headers[$attr] : (
+			isset($headers[ucwords($attr, '-')]) ? $headers[ucwords($attr, '-')] : $default
+		);
 	}
 }

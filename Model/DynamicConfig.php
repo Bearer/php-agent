@@ -20,7 +20,7 @@ class DynamicConfig
 	/**
 	 * @return string|null
 	 */
-	public function getLogLevel(): ?string
+	public function getLogLevel()
 	{
 		return $this->logLevel;
 	}
@@ -29,7 +29,7 @@ class DynamicConfig
 	 * @param string|null $logLevel
 	 * @return DynamicConfig
 	 */
-	public function setLogLevel(?string $logLevel): DynamicConfig
+	public function setLogLevel($logLevel)
 	{
 		$this->logLevel = $logLevel;
 		return $this;
@@ -38,7 +38,7 @@ class DynamicConfig
 	/**
 	 * @return bool
 	 */
-	public function isActive(): bool
+	public function isActive()
 	{
 		return $this->active;
 	}
@@ -47,7 +47,7 @@ class DynamicConfig
 	 * @param bool $active
 	 * @return DynamicConfig
 	 */
-	public function setActive(bool $active): DynamicConfig
+	public function setActive($active)
 	{
 		$this->active = $active;
 

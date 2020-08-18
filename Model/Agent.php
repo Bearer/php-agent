@@ -21,7 +21,7 @@ class Agent
 	/**
 	 * @return string
 	 */
-	public function getType(): string
+	public function getType()
 	{
 		return $this->type;
 	}
@@ -30,7 +30,7 @@ class Agent
 	 * @param string $type
 	 * @return Agent
 	 */
-	public function setType(string $type): Agent
+	public function setType($type)
 	{
 		$this->type = $type;
 		return $this;
@@ -39,7 +39,7 @@ class Agent
 	/**
 	 * @return string
 	 */
-	public function getVersion(): ?string
+	public function getVersion()
 	{
 		return $this->version;
 	}
@@ -48,7 +48,7 @@ class Agent
 	 * @param string $version
 	 * @return Agent
 	 */
-	public function setVersion(string $version): Agent
+	public function setVersion($version)
 	{
 		$this->version = strval($version);
 		return $this;

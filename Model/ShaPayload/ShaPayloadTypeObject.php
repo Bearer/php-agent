@@ -14,7 +14,7 @@ class ShaPayloadTypeObject extends AbstractShaPayloadType
 	 * @param mixed $data
 	 * @return int
 	 */
-	public static function vote($data): int
+	public static function vote($data)
 	{
 		if (is_object($data)) {
 			return 1;
@@ -29,7 +29,7 @@ class ShaPayloadTypeObject extends AbstractShaPayloadType
 	/**
 	 * @return int
 	 */
-	public function getType(): int
+	public function getType()
 	{
 		return ShaPayloadType::OBJECT;
 	}

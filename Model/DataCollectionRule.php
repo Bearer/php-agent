@@ -30,7 +30,7 @@ class DataCollectionRule
     /**
      * @return string|null
      */
-    public function getFilterHash(): ?string
+    public function getFilterHash()
     {
         return $this->filterHash;
     }
@@ -39,7 +39,7 @@ class DataCollectionRule
      * @param string|null $filterHash
      * @return DataCollectionRule
      */
-    public function setFilterHash(?string $filterHash): DataCollectionRule
+    public function setFilterHash($filterHash)
     {
         $this->filterHash = $filterHash;
         return $this;
@@ -48,7 +48,7 @@ class DataCollectionRule
     /**
      * @return array
      */
-    public function getParams(): array
+    public function getParams()
     {
         return $this->params;
     }
@@ -57,7 +57,7 @@ class DataCollectionRule
      * @param array $params
      * @return DataCollectionRule
      */
-    public function setParams(array $params): DataCollectionRule
+    public function setParams($params)
     {
         $this->params = $params;
         return $this;
@@ -66,7 +66,7 @@ class DataCollectionRule
     /**
      * @return DynamicConfig|null
      */
-    public function getConfig(): ?DynamicConfig
+    public function getConfig()
     {
         return $this->config;
     }
@@ -75,7 +75,7 @@ class DataCollectionRule
      * @param DynamicConfig|null $config
      * @return $this
      */
-    public function setConfig(?DynamicConfig $config): DataCollectionRule
+    public function setConfig($config)
     {
         $this->config = $config;
         return $this;
@@ -84,7 +84,7 @@ class DataCollectionRule
     /**
      * @return string|null
      */
-    public function getSignature(): ?string
+    public function getSignature()
     {
         return $this->signature;
     }
@@ -93,7 +93,7 @@ class DataCollectionRule
      * @param string|null $signature
      * @return DataCollectionRule
      */
-    public function setSignature(?string $signature): DataCollectionRule
+    public function setSignature($signature)
     {
         $this->signature = $signature;
         return $this;

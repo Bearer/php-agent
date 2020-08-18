@@ -15,11 +15,14 @@ class ConfigurationSerializer
 	 * @param Configuration $configuration
 	 * @return array
 	 */
-	public function __invoke(Configuration $configuration): array
+	public function __invoke(Configuration $configuration)
 	{
+		$runtime = new RuntimeSerializer();
+		$agent = new AgentSerializer();
+
 		return [
-			'runtime' => (new RuntimeSerializer())(),
-			'agent' => (new AgentSerializer())(),
+			'runtime' => $runtime(),
+			'agent' => $agent(),
 			'application' => [
 				'environment' => base64_encode($configuration->getEnvironment())
 			]

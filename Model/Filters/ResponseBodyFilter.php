@@ -20,7 +20,7 @@ class ResponseBodyFilter extends KeyValueFilter
 	 * @param ReportLog $log
 	 * @return array
 	 */
-	protected function getMatchParameters(ReportLog $log): array
+	protected function getMatchParameters($log)
 	{
 		$body = $log->getResponseBody();
 		$decode_value = json_decode($body, true);
@@ -31,7 +31,7 @@ class ResponseBodyFilter extends KeyValueFilter
 	 * @param array $array
 	 * @return array
 	 */
-	private function flat(array $array): array
+	private function flat($array)
 	{
 		$return = [];
 		foreach ($array as $key => $value) {

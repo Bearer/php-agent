@@ -24,7 +24,7 @@ class HttpMethodFilter extends Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public function match(ReportLog $log): bool
+	public function match($log)
 	{
 		return $log->getMethod() === $this->getValue();
 	}
@@ -32,7 +32,7 @@ class HttpMethodFilter extends Filter
 	/**
 	 * @return string
 	 */
-	public function getValue(): string
+	public function getValue()
 	{
 		return $this->value;
 	}
@@ -41,7 +41,7 @@ class HttpMethodFilter extends Filter
 	 * @param string $value
 	 * @return HttpMethodFilter
 	 */
-	public function setValue(string $value): HttpMethodFilter
+	public function setValue($value)
 	{
 		$this->value = $value;
 

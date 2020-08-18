@@ -20,7 +20,7 @@ abstract class RangeFilter extends Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public function match(ReportLog $log): bool
+	public function match($log)
 	{
 		return $this->matchFrom($this->getValue($log)) && $this->matchTo($this->getValue($log));
 	}
@@ -29,7 +29,7 @@ abstract class RangeFilter extends Filter
 	 * @param int $code
 	 * @return bool
 	 */
-	private function matchFrom(?int $code): bool
+	private function matchFrom($code)
 	{
 		if ($code === null) {
 			return false;
@@ -48,7 +48,7 @@ abstract class RangeFilter extends Filter
 	/**
 	 * @return Range
 	 */
-	public function getRange(): Range
+	public function getRange()
 	{
 		return $this->range;
 	}
@@ -57,7 +57,7 @@ abstract class RangeFilter extends Filter
 	 * @param Range $range
 	 * @return StatusCodeFilter
 	 */
-	public function setRange(Range $range): RangeFilter
+	public function setRange($range)
 	{
 		$this->range = $range;
 
@@ -68,13 +68,13 @@ abstract class RangeFilter extends Filter
 	 * @param ReportLog $log
 	 * @return int|null
 	 */
-	protected abstract function getValue(ReportLog $log): ?int;
+	protected abstract function getValue($log);
 
 	/**
 	 * @param int $code
 	 * @return bool
 	 */
-	private function matchTo(?int $code): bool
+	private function matchTo($code)
 	{
 		if ($code === null) {
 			return false;

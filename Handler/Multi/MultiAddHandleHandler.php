@@ -15,24 +15,16 @@ class MultiAddHandleHandler extends AbstractHandler
 	use CurlResponseListener;
 
 	/**
-	 * @return string
-	 */
-	public static function getMethod(): string
-	{
-		return 'curl_multi_add_handle';
-	}
-
-	/**
 	 * @param $mh
 	 * @param $ch
 	 * @return mixed
 	 */
-	public function __invoke($mh, $ch)
+	public static function run($mh, $ch)
 	{
 		CurlRequest::get($ch)->setParent($mh);
-		$this->addHeaderListener($ch);
-		$this->addDataListener($ch);
+		static::addHeaderListener($ch);
+		static::addDataListener($ch);
 
-		return base_curl_multi_add_handle($mh, $ch);
+		return curl_multi_add_handle($mh, $ch);
 	}
 }

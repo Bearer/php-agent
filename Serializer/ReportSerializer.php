@@ -14,18 +14,22 @@ class ReportSerializer
 	 * @param Report $report
 	 * @return array
 	 */
-	public function __invoke(Report $report): array
+	public function __invoke($report)
 	{
+		$runtime = new RuntimeSerializer();
+		$agent = new AgentSerializer();
+
 		$export = [
 			'secretKey' => $report->getSecretKey(),
 			'appEnvironment' => $report->getAppEnvironment(),
-			'runtime' => (new RuntimeSerializer())($report->getRuntime()),
-			'agent' => (new AgentSerializer())($report->getAgent()),
+			'runtime' => $runtime($report->getRuntime()),
+			'agent' => $agent($report->getAgent()),
 			'logs' => []
 		];
 
-		foreach ($report->getLogs() ?? [] as $i => $log) {
-			$export['logs'][$i] = (new ReportLogSerializer())($log);
+		$serializer = new ReportLogSerializer();
+		foreach ($report->getLogs() !== null ? $report->getLogs() : [] as $i => $log) {
+			$export['logs'][$i] = $serializer($log);
 		}
 
 		return $export;

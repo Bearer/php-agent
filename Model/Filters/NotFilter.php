@@ -24,7 +24,7 @@ class NotFilter extends Filter
 	/**
 	 * @return string
 	 */
-	public function getChildHash(): string
+	public function getChildHash()
 	{
 		return $this->childHash;
 	}
@@ -33,7 +33,7 @@ class NotFilter extends Filter
 	 * @param string $childHash
 	 * @return NotFilter
 	 */
-	public function setChildHash(string $childHash): NotFilter
+	public function setChildHash($childHash)
 	{
 		$this->childHash = $childHash;
 
@@ -44,7 +44,7 @@ class NotFilter extends Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public function match(ReportLog $log): bool
+	public function match($log)
 	{
 		$filter = Configuration::get()->getFilter($this->getChildHash());
 

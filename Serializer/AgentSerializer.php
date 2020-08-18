@@ -15,10 +15,12 @@ class AgentSerializer
 	 * @param Agent $agent
 	 * @return array
 	 */
-	public function __invoke(?Agent $agent = null): array
+	public function __invoke($agent = null)
 	{
 		if($agent === null) {
-			$agent = (new AgentFactory())();
+			$factory = new AgentFactory();
+
+			$agent = $factory();
 		}
 
 		return [

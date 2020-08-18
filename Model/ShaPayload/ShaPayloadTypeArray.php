@@ -14,7 +14,7 @@ class ShaPayloadTypeArray extends AbstractShaPayloadType
 	 * @param mixed $data
 	 * @return int
 	 */
-	public static function vote($data): int
+	public static function vote($data)
 	{
 		return is_array($data) ? 1 : 0;
 	}
@@ -22,9 +22,9 @@ class ShaPayloadTypeArray extends AbstractShaPayloadType
 	/**
 	 * @return int
 	 */
-	public function getType(): int
+	public function getType()
 	{
-		return ShaPayloadType::ARRAY;
+		return ShaPayloadType::ARR;
 	}
 
 }

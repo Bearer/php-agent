@@ -13,7 +13,7 @@ class RuntimeFactory
 	/**
 	 * @return Runtime
 	 */
-	public function __invoke(): Runtime
+	public function __invoke()
 	{
 		$runtime = new Runtime();
 

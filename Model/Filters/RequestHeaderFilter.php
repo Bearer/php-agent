@@ -20,7 +20,7 @@ class RequestHeaderFilter extends KeyValueFilter
 	 * @param ReportLog $log
 	 * @return array
 	 */
-    protected function getMatchParameters(ReportLog $log): array
+    protected function getMatchParameters($log)
 	{
 		return $log->getRequestHeaders();
 	}

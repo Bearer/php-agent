@@ -10,7 +10,7 @@ class Agent
 	/**
 	 * @param array $options
 	 */
-	public static function init(array $options): void
+	public static function init($options)
 	{
 		(new Agent())->configure($options);
 	}
@@ -19,7 +19,7 @@ class Agent
 	 * @param array $options
 	 * @return $this
 	 */
-	private function configure(array $options): self
+	private function configure($options)
 	{
 		$configuration = Configuration::get($options);
 		try {
@@ -41,7 +41,7 @@ class Agent
 	 * @param null $data
 	 * @param bool $force
 	 */
-	public static function verbose(string $tag, string $message, $data = null, bool $force = false): void
+	public static function verbose( $tag, $message, $data = null, $force = false)
 	{
 		if (Configuration::get()->isVerbose() || $force) {
 			error_log(

@@ -3,7 +3,7 @@
 namespace Bearer\Handler\Multi;
 
 use Bearer\Handler\AbstractHandler;
-use Bearer\Report\ReportSender;
+use Bearer\Request\CurlRequest;
 
 /**
  * Class MultiRemoveHandleHandler
@@ -12,22 +12,15 @@ use Bearer\Report\ReportSender;
 class MultiRemoveHandleHandler extends AbstractHandler
 {
 	/**
-	 * @return string
-	 */
-	public static function getMethod(): string
-	{
-		return 'curl_multi_remove_handle';
-	}
-
-	/**
 	 * @param $mh
 	 * @param $ch
 	 * @return mixed
 	 */
-	public function __invoke($mh, $ch)
+	public static function run($mh, $ch)
 	{
-		$this->report($ch);
+		static::report($ch);
+		CurlRequest::remove($ch);
 
-		return base_curl_multi_remove_handle($mh, $ch);
+		return curl_multi_remove_handle($mh, $ch);
 	}
 }

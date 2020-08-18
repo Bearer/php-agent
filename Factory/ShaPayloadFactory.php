@@ -22,7 +22,7 @@ class ShaPayloadFactory
 	/**
 	 * @var array
 	 */
-	private const type_mapping = [
+	const type_mapping = [
 		ShaPayloadTypeArray::class,
 		ShaPayloadTypeBoolean::class,
 		ShaPayloadTypeNull::class,
@@ -41,14 +41,16 @@ class ShaPayloadFactory
 		if (json_last_error() !== JSON_ERROR_NONE || is_string($data)) {
 			return null;
 		}
-		return (new ShaPayloadSerializer())($this->build($data));
+		$serializer = new ShaPayloadSerializer();
+
+		return $serializer($this->build($data));
 	}
 
 	/**
 	 * @param mixed $data
 	 * @return AbstractShaPayloadType
 	 */
-	private function build($data): AbstractShaPayloadType
+	private function build($data)
 	{
 		$type = $this->findType($data);
 
@@ -81,7 +83,7 @@ class ShaPayloadFactory
 	 * @param $data
 	 * @return string
 	 */
-	private function findType($data): string
+	private function findType($data)
 	{
 		$types = [];
 

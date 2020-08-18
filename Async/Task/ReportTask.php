@@ -39,28 +39,31 @@ class ReportTask extends AbstractTask
 
 		$configuration_data = ConfigurationTask::get()->getData();
 		if ($configuration_data !== null) {
-			(new ConfigurationFactory())($configuration_data, Configuration::get());
+			$factory = new ConfigurationFactory();
+			$factory($configuration_data, Configuration::get());
 		}
 	}
 
 	/**
 	 * @return callable
 	 */
-	public function __invoke(): callable
+	public function __invoke()
 	{
 		$this->request->setState(CurlRequest::STATE_SEND);
 
 		$configuration = Configuration::get();
 
 		Agent::verbose('Report', 'build', intval($this->ch));
-		$report = (new ReportFactory())(CurlRequest::get($this->ch));
+		$factory = new ReportFactory();
+		$report = $factory(CurlRequest::get($this->ch));
 
 		Agent::verbose('Report', 'serialize', intval($this->ch));
-		$data = (new ReportSerializer())($report);
+		$serializer = new ReportSerializer();
+		$data = $serializer($report);
 
 		return function () use ($configuration, $data) {
 			$ch = curl_init();
-			base_curl_setopt_array($ch, [
+			curl_setopt_array($ch, [
 				CURLOPT_URL => sprintf('%s/logs', $configuration->getReportHost()),
 				CURLOPT_POST => true,
 				CURLOPT_POSTFIELDS => json_encode($data,
@@ -78,7 +81,7 @@ class ReportTask extends AbstractTask
 					'Content-Type:application/json'
 				]
 			]);
-			base_curl_exec($ch);
+			curl_exec($ch);
 			curl_close($ch);
 
 			return true;
@@ -88,7 +91,7 @@ class ReportTask extends AbstractTask
 	/**
 	 * @param $output
 	 */
-	public function then($output): void
+	public function then($output)
 	{
 		Agent::verbose('Report',
 			sprintf('sended : %s', intval($this->ch))
@@ -98,7 +101,7 @@ class ReportTask extends AbstractTask
 	/**
 	 * @return bool
 	 */
-	public function prevent(): bool
+	public function prevent()
 	{
 		return $this->request->isSend();
 	}

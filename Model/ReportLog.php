@@ -121,7 +121,7 @@ class ReportLog
     /**
      * @return string|null
      */
-	public function getLogLevel(): ?string
+	public function getLogLevel()
 	{
 		return $this->logLevel;
 	}
@@ -130,7 +130,7 @@ class ReportLog
 	 * @param string $logLevel
 	 * @return ReportLog
 	 */
-	public function setLogLevel(string $logLevel): ReportLog
+	public function setLogLevel($logLevel)
 	{
 		$this->logLevel = $logLevel;
 		return $this;
@@ -139,7 +139,7 @@ class ReportLog
 	/**
 	 * @return int
 	 */
-	public function getStartedAt(): int
+	public function getStartedAt()
 	{
 		return $this->startedAt;
 	}
@@ -148,7 +148,7 @@ class ReportLog
 	 * @param int $startedAt
 	 * @return ReportLog
 	 */
-	public function setStartedAt(int $startedAt): ReportLog
+	public function setStartedAt($startedAt)
 	{
 		$this->startedAt = $startedAt;
 		return $this;
@@ -157,7 +157,7 @@ class ReportLog
 	/**
 	 * @return int
 	 */
-	public function getEndedAt(): int
+	public function getEndedAt()
 	{
 		return $this->endedAt;
 	}
@@ -166,7 +166,7 @@ class ReportLog
 	 * @param int $endedAt
 	 * @return ReportLog
 	 */
-	public function setEndedAt(int $endedAt): ReportLog
+	public function setEndedAt($endedAt)
 	{
 		$this->endedAt = $endedAt;
 		return $this;
@@ -175,7 +175,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getType(): string
+	public function getType()
 	{
 		return $this->type;
 	}
@@ -184,7 +184,7 @@ class ReportLog
 	 * @param string $type
 	 * @return ReportLog
 	 */
-	public function setType(string $type): ReportLog
+	public function setType($type)
 	{
 		$this->type = $type;
 		return $this;
@@ -193,7 +193,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getStageType(): string
+	public function getStageType()
 	{
 		return $this->stageType;
 	}
@@ -202,7 +202,7 @@ class ReportLog
 	 * @param string $stageType
 	 * @return ReportLog
 	 */
-	public function setStageType(string $stageType): ReportLog
+	public function setStageType($stageType)
 	{
 		$this->stageType = $stageType;
 		return $this;
@@ -211,7 +211,7 @@ class ReportLog
 	/**
 	 * @return array
 	 */
-	public function getActiveDataCollectionRules(): array
+	public function getActiveDataCollectionRules()
 	{
 		return $this->activeDataCollectionRules;
 	}
@@ -220,7 +220,7 @@ class ReportLog
 	 * @param array $activeDataCollectionRules
 	 * @return ReportLog
 	 */
-	public function setActiveDataCollectionRules(array $activeDataCollectionRules): ReportLog
+	public function setActiveDataCollectionRules($activeDataCollectionRules)
 	{
 		$this->activeDataCollectionRules = $activeDataCollectionRules;
 		return $this;
@@ -230,7 +230,7 @@ class ReportLog
 	 * @param DataCollectionRule $dataCollectionRule
 	 * @return $this
 	 */
-	public function addActiveDataCollectionRules(DataCollectionRule $dataCollectionRule): ReportLog
+	public function addActiveDataCollectionRules($dataCollectionRule)
 	{
 		$this->activeDataCollectionRules[] = $dataCollectionRule;
 		return $this;
@@ -239,7 +239,7 @@ class ReportLog
 	/**
 	 * @return int
 	 */
-	public function getPort(): int
+	public function getPort()
 	{
 		return $this->port;
 	}
@@ -248,7 +248,7 @@ class ReportLog
 	 * @param int $port
 	 * @return ReportLog
 	 */
-	public function setPort(int $port): ReportLog
+	public function setPort($port)
 	{
 		$this->port = $port;
 		return $this;
@@ -257,7 +257,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getProtocol(): string
+	public function getProtocol()
 	{
 		return $this->protocol;
 	}
@@ -266,7 +266,7 @@ class ReportLog
 	 * @param string $protocol
 	 * @return ReportLog
 	 */
-	public function setProtocol(string $protocol): ReportLog
+	public function setProtocol($protocol)
 	{
 		$this->protocol = $protocol;
 		return $this;
@@ -275,7 +275,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getHostname(): string
+	public function getHostname()
 	{
 		return $this->hostname;
 	}
@@ -284,7 +284,7 @@ class ReportLog
 	 * @param string $hostname
 	 * @return ReportLog
 	 */
-	public function setHostname(string $hostname): ReportLog
+	public function setHostname($hostname)
 	{
 		$this->hostname = $hostname;
 		return $this;
@@ -293,7 +293,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getPath(): string
+	public function getPath()
 	{
 		return $this->path;
 	}
@@ -302,7 +302,7 @@ class ReportLog
 	 * @param string $path
 	 * @return ReportLog
 	 */
-	public function setPath(string $path): ReportLog
+	public function setPath($path)
 	{
 		$this->path = $path;
 		return $this;
@@ -311,7 +311,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getMethod(): string
+	public function getMethod()
 	{
 		return $this->method;
 	}
@@ -320,7 +320,7 @@ class ReportLog
 	 * @param string $method
 	 * @return ReportLog
 	 */
-	public function setMethod(string $method): ReportLog
+	public function setMethod($method)
 	{
 		$this->method = $method;
 		return $this;
@@ -329,7 +329,7 @@ class ReportLog
 	/**
 	 * @return string
 	 */
-	public function getUrl(): string
+	public function getUrl()
 	{
 		return $this->url;
 	}
@@ -338,7 +338,7 @@ class ReportLog
 	 * @param string $url
 	 * @return ReportLog
 	 */
-	public function setUrl(string $url): ReportLog
+	public function setUrl($url)
 	{
 		$this->url = $url;
 		return $this;
@@ -383,7 +383,7 @@ class ReportLog
 	/**
 	 * @return int|null
 	 */
-	public function getStatusCode(): ?int
+	public function getStatusCode()
 	{
 		return $this->statusCode;
 	}
@@ -392,7 +392,7 @@ class ReportLog
 	 * @param int $statusCode
 	 * @return ReportLog
 	 */
-	public function setStatusCode(?int $statusCode): ReportLog
+	public function setStatusCode($statusCode)
 	{
 		$this->statusCode = $statusCode;
 		return $this;
@@ -410,7 +410,7 @@ class ReportLog
 	 * @param string|array $requestBody
 	 * @return ReportLog
 	 */
-	public function setRequestBody($requestBody): ReportLog
+	public function setRequestBody($requestBody)
 	{
 		$this->requestBody = $requestBody;
 		return $this;
@@ -428,7 +428,7 @@ class ReportLog
 	 * @param string|array $responseBody
 	 * @return ReportLog
 	 */
-	public function setResponseBody($responseBody): ReportLog
+	public function setResponseBody($responseBody)
 	{
 		$this->responseBody = $responseBody;
 		return $this;
@@ -437,7 +437,7 @@ class ReportLog
 	/**
 	 * @return string|null
 	 */
-	public function getRequestBodyPayloadSha(): ?string
+	public function getRequestBodyPayloadSha()
 	{
 		return $this->requestBodyPayloadSha;
 	}
@@ -446,7 +446,7 @@ class ReportLog
 	 * @param string|null $requestBodyPayloadSha
 	 * @return ReportLog
 	 */
-	public function setRequestBodyPayloadSha(?string $requestBodyPayloadSha): ReportLog
+	public function setRequestBodyPayloadSha($requestBodyPayloadSha)
 	{
 		$this->requestBodyPayloadSha = $requestBodyPayloadSha;
 		return $this;
@@ -455,7 +455,7 @@ class ReportLog
 	/**
 	 * @return int|null
 	 */
-	public function getResponseBodySize(): ?int
+	public function getResponseBodySize()
 	{
 		return $this->responseBodySize;
 	}
@@ -464,7 +464,7 @@ class ReportLog
 	 * @param int|null $responseBodySize
 	 * @return ReportLog
 	 */
-	public function setResponseBodySize(?int $responseBodySize): ReportLog
+	public function setResponseBodySize($responseBodySize)
 	{
 		$this->responseBodySize = $responseBodySize;
 		return $this;
@@ -473,7 +473,7 @@ class ReportLog
 	/**
 	 * @return string|null
 	 */
-	public function getResponseBodyPayloadSha(): ?string
+	public function getResponseBodyPayloadSha()
 	{
 		return $this->responseBodyPayloadSha;
 	}
@@ -482,7 +482,7 @@ class ReportLog
 	 * @param string|null $responseBodyPayloadSha
 	 * @return ReportLog
 	 */
-	public function setResponseBodyPayloadSha(?string $responseBodyPayloadSha): ReportLog
+	public function setResponseBodyPayloadSha($responseBodyPayloadSha)
 	{
 		$this->responseBodyPayloadSha = $responseBodyPayloadSha;
 		return $this;
@@ -491,7 +491,7 @@ class ReportLog
     /**
      * @return int|null
      */
-	public function getErrorCode(): ?int
+	public function getErrorCode()
 	{
 		return $this->errorCode;
 	}
@@ -500,7 +500,7 @@ class ReportLog
 	 * @param int $errorCode
 	 * @return ReportLog
 	 */
-	public function setErrorCode(?int $errorCode): ReportLog
+	public function setErrorCode($errorCode)
 	{
 		$this->errorCode = $errorCode;
 		return $this;
@@ -509,7 +509,7 @@ class ReportLog
     /**
      * @return string|null
      */
-	public function getErrorFullMessage(): ?string
+	public function getErrorFullMessage()
 	{
 		return $this->errorFullMessage;
 	}
@@ -518,7 +518,7 @@ class ReportLog
 	 * @param string $errorFullMessage
 	 * @return ReportLog
 	 */
-	public function setErrorFullMessage(string $errorFullMessage): ReportLog
+	public function setErrorFullMessage($errorFullMessage)
 	{
 		$this->errorFullMessage = $errorFullMessage;
 		return $this;

@@ -15,10 +15,11 @@ class RuntimeSerializer
 	 * @param Runtime $runtime
 	 * @return array
 	 */
-	public function __invoke(?Runtime $runtime = null): array
+	public function __invoke($runtime = null)
 	{
 		if($runtime === null) {
-			$runtime = (new RuntimeFactory())();
+			$factory = new RuntimeFactory();
+			$runtime = $factory();
 		}
 
 		return [

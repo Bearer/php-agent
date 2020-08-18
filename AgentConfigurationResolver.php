@@ -17,7 +17,7 @@ class AgentConfigurationResolver
 	 * @param array $options
 	 * @return Configuration
 	 */
-	public static function resolve(array $options): Configuration
+	public static function resolve($options)
 	{
 		$resolver =
 			(new OptionsResolver())
@@ -25,7 +25,14 @@ class AgentConfigurationResolver
 					'debug' => false,
 					'secretKey' => null,
 					'verbose' => false,
-					'environment' => $_SERVER['env'] ?? ($_SERVER['APP_ENV'] ?? ($_ENV['env'] ?? $_ENV['APP_ENV'])) ?? null,
+					'environment' =>
+						isset($_SERVER['env']) ? $_SERVER['env'] : (
+							isset($_SERVER['APP_ENV']) ? $_SERVER['APP_ENV'] : (
+								isset($_ENV['env']) ? $_ENV['env'] : (
+									isset($_ENV['APP_ENV']) ? $_ENV['APP_ENV'] : null
+								)
+							)
+						),
 					'disabled' => function (Options $options) {
 						return $options->offsetExists('secretKey') ? $options->offsetGet('secretKey') === null : true;
 					},
@@ -46,6 +53,8 @@ class AgentConfigurationResolver
 				->setAllowedTypes('configHost', 'string')
 				->setAllowedTypes('reportHost', 'string');
 
-		return (new ConfigurationFactory())($resolver->resolve($options));
+		$factory = new ConfigurationFactory();
+
+		return $factory($resolver->resolve($options));
 	}
 }

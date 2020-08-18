@@ -21,7 +21,7 @@ class ShaPayloadObjectKey extends ShaPayload
 	/**
 	 * @return AbstractShaPayloadType
 	 */
-	public function getHash(): AbstractShaPayloadType
+	public function getHash()
 	{
 		return $this->hash;
 	}
@@ -30,7 +30,7 @@ class ShaPayloadObjectKey extends ShaPayload
 	 * @param AbstractShaPayloadType $hash
 	 * @return ShaPayloadObjectKey
 	 */
-	public function setHash(AbstractShaPayloadType $hash): ShaPayloadObjectKey
+	public function setHash($hash)
 	{
 		$this->hash = $hash;
 		return $this;
@@ -39,7 +39,7 @@ class ShaPayloadObjectKey extends ShaPayload
 	/**
 	 * @return string
 	 */
-	public function getKey(): string
+	public function getKey()
 	{
 		return $this->key;
 	}
@@ -48,7 +48,7 @@ class ShaPayloadObjectKey extends ShaPayload
 	 * @param string $key
 	 * @return ShaPayloadObjectKey
 	 */
-	public function setKey(string $key): ShaPayloadObjectKey
+	public function setKey($key)
 	{
 		$this->key = $key;
 		return $this;

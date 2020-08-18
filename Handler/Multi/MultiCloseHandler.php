@@ -2,8 +2,6 @@
 
 namespace Bearer\Handler\Multi;
 
-use Bearer\Async\AsyncClient;
-use Bearer\Async\Task\HandlerEventTask;
 use Bearer\Handler\AbstractHandler;
 
 /**
@@ -13,23 +11,15 @@ use Bearer\Handler\AbstractHandler;
 class MultiCloseHandler extends AbstractHandler
 {
 	/**
-	 * @return string
-	 */
-	public static function getMethod(): string
-	{
-		return 'curl_multi_close';
-	}
-
-	/**
 	 * @param $mh
 	 * @return mixed
 	 */
-	public function __invoke($mh)
+	public static function run($mh)
 	{
 		do {
 			curl_multi_info_read($mh, $msgs_in_queue);
 		} while ($msgs_in_queue);
 
-		return base_curl_multi_close($mh);
+		return curl_multi_close($mh);
 	}
 }

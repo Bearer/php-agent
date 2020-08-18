@@ -27,17 +27,17 @@ abstract class AbstractShaPayloadType extends ShaPayload
 	 * @param mixed $data
 	 * @return int
 	 */
-	public static abstract function vote($data): int;
+	public static abstract function vote($data);
 
 	/**
 	 * @return int
 	 */
-	public abstract function getType(): int;
+	public abstract function getType();
 
 	/**
 	 * @return array
 	 */
-	public function getItems(): array
+	public function getItems()
 	{
 		return $this->items;
 	}
@@ -46,7 +46,7 @@ abstract class AbstractShaPayloadType extends ShaPayload
 	 * @param array $items
 	 * @return ShaPayload
 	 */
-	public function setItems(array $items): ShaPayload
+	public function setItems($items)
 	{
 		$this->items = $items;
 		return $this;
@@ -55,7 +55,7 @@ abstract class AbstractShaPayloadType extends ShaPayload
 	/**
 	 * @return array
 	 */
-	public function getRules(): array
+	public function getRules()
 	{
 		return $this->rules;
 	}
@@ -64,7 +64,7 @@ abstract class AbstractShaPayloadType extends ShaPayload
 	 * @param array $rules
 	 * @return ShaPayload
 	 */
-	public function setRules(array $rules): ShaPayload
+	public function setRules($rules)
 	{
 		$this->rules = $rules;
 		return $this;
@@ -73,7 +73,7 @@ abstract class AbstractShaPayloadType extends ShaPayload
 	/**
 	 * @return array
 	 */
-	public function getFields(): array
+	public function getFields()
 	{
 		return $this->fields;
 	}
@@ -82,7 +82,7 @@ abstract class AbstractShaPayloadType extends ShaPayload
 	 * @param array $fields
 	 * @return ShaPayload
 	 */
-	public function setFields(array $fields): ShaPayload
+	public function setFields($fields)
 	{
 		$this->fields = $fields;
 		return $this;

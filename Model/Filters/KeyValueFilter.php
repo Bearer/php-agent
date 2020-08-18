@@ -25,7 +25,7 @@ abstract class KeyValueFilter extends Filter
 	 * @param ReportLog $log
 	 * @return bool
 	 */
-	public function match(ReportLog $log): bool
+	public function match($log)
 	{
 		$params = $this->getMatchParameters($log);
 
@@ -54,12 +54,12 @@ abstract class KeyValueFilter extends Filter
 	 * @param ReportLog $log
 	 * @return array
 	 */
-	protected abstract function getMatchParameters(ReportLog $log): array;
+	protected abstract function getMatchParameters($log);
 
 	/**
 	 * @return RegularExpression|null
 	 */
-	public function getKeyPattern(): ?RegularExpression
+	public function getKeyPattern()
 	{
 		return $this->keyPattern;
 	}
@@ -68,7 +68,7 @@ abstract class KeyValueFilter extends Filter
 	 * @param RegularExpression|null $keyPattern
 	 * @return KeyValueFilter
 	 */
-	public function setKeyPattern(?RegularExpression $keyPattern): KeyValueFilter
+	public function setKeyPattern($keyPattern)
 	{
 		$this->keyPattern = $keyPattern;
 
@@ -78,7 +78,7 @@ abstract class KeyValueFilter extends Filter
 	/**
 	 * @return RegularExpression|null
 	 */
-	public function getValuePattern(): ?RegularExpression
+	public function getValuePattern()
 	{
 		return $this->valuePattern;
 	}
@@ -87,7 +87,7 @@ abstract class KeyValueFilter extends Filter
 	 * @param RegularExpression|null $valuePattern
 	 * @return KeyValueFilter
 	 */
-	public function setValuePattern(?RegularExpression $valuePattern): KeyValueFilter
+	public function setValuePattern($valuePattern)
 	{
 		$this->valuePattern = $valuePattern;
 

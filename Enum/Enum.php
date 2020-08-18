@@ -11,7 +11,7 @@ class Enum
      * @return array
      * @throws \ReflectionException
      */
-    public function getConstantsValues(): array
+    public function getConstantsValues()
     {
         return array_values((new \ReflectionClass($this))->getConstants());
     }
@@ -20,7 +20,7 @@ class Enum
      * @return array
      * @throws \ReflectionException
      */
-    public function getConstants(): array
+    public function getConstants()
     {
         return (new \ReflectionClass($this))->getConstants();
     }

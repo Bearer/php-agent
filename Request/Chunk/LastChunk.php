@@ -11,7 +11,7 @@ class LastChunk extends DataChunk
 	/**
 	 * @return bool
 	 */
-	public function isLast(): bool
+	public function isLast()
 	{
 		return true;
 	}

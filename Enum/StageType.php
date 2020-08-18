@@ -14,11 +14,11 @@ class StageType extends Enum
 	const BODIES = 'BodiesStage';
 
 	/**
-	 * @param string $state
+	 * @param string $stage
 	 * @param string $needed
 	 * @return bool
 	 */
-	public static function is(string $stage, string $needed): bool
+	public static function is($stage, $needed)
 	{
 		$stages = [self::CONNECT, self::INIT, self::REQUEST, self::RESPONSE, self::BODIES];
 

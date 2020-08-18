@@ -30,7 +30,7 @@ class Range
     /**
      * @return float|null
      */
-    public function getFrom(): ?float
+    public function getFrom()
     {
         return $this->from;
     }
@@ -39,7 +39,7 @@ class Range
      * @param float|null $from
      * @return Range
      */
-    public function setFrom(?float $from): Range
+    public function setFrom($from)
     {
         $this->from = $from;
 
@@ -49,7 +49,7 @@ class Range
     /**
      * @return bool
      */
-    public function isFromExclusive(): bool
+    public function isFromExclusive()
     {
         return $this->fromExclusive;
     }
@@ -58,7 +58,7 @@ class Range
      * @param bool $fromExclusive
      * @return Range
      */
-    public function setFromExclusive(bool $fromExclusive): Range
+    public function setFromExclusive($fromExclusive)
     {
         $this->fromExclusive = $fromExclusive;
 
@@ -68,7 +68,7 @@ class Range
     /**
      * @return float|null
      */
-    public function getTo(): ?float
+    public function getTo()
     {
         return $this->to;
     }
@@ -77,7 +77,7 @@ class Range
      * @param float|null $to
      * @return Range
      */
-    public function setTo(?float $to): Range
+    public function setTo($to)
     {
         $this->to = $to;
 
@@ -87,7 +87,7 @@ class Range
     /**
      * @return bool
      */
-    public function isToExclusive(): bool
+    public function isToExclusive()
     {
         return $this->toExclusive;
     }
@@ -96,7 +96,7 @@ class Range
      * @param bool $toExclusive
      * @return Range
      */
-    public function setToExclusive(bool $toExclusive): Range
+    public function setToExclusive($toExclusive)
     {
         $this->toExclusive = $toExclusive;
 
