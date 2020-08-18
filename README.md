@@ -4,12 +4,12 @@
 
 ## Requirements
 
-**PHP:** ^7.1
+**PHP:** ^5.6
 
 **Extensions:**
 - [csURL](https://www.php.net/manual/en/book.curl.php)
 - [JSON](https://www.php.net/book.json)
-- [Runkit7](https://www.php.net/manual/en/book.runkit7.php)
+- [Stream](https://www.php.net/manual/en/intro.stream.php)
 
 
 # Supported
@@ -19,23 +19,6 @@ The Bearer PHP Agent supports any cURL request (single and multiples) and:
 - [Guzzle](https://github.com/guzzle/guzzle)
 
 ## Installation
-
-You need to enable the runkit7 extension:
-
-```bash
-$ pecl install "channel://pecl.php.net/runkit7-3.1.0a1"
-```
-
-Or manually:
-
-```bash
-$ curl -sL "https://github.com/runkit7/runkit7/releases/download/3.1.0a1/runkit7-3.1.0a1.tgz" > "runkit-3.1.0a1.tgz" && \
-$ pecl install "runkit-3.1.0a1.tgz" && \
-$ rm "runkit-3.1.0a1.tgz"
-
-$ echo "extension=runkit7.so" > /usr/local/etc/php/conf.d/docker-php-ext-runkit.ini
-$ echo "runkit.internal_override=true" >> /usr/local/etc/php/php.ini
-```
 
 From a terminal, install the Bearer agent module and save it into your project:
 
