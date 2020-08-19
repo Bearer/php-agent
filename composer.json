@@ -17,9 +17,7 @@
         "symfony/options-resolver": "*"
     },
     "require-dev": {
-        "php": ">=7.3",
-        "phpunit/phpunit": "^9",
-        "pestphp/pest": "^v0.2.4",
+        "phpunit/phpunit": "*",
         "symfony/var-dumper": "*"
     },
     "minimum-stability": "dev",

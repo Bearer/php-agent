@@ -112,7 +112,7 @@ class Configuration
 	/**
 	 * @return string|null
 	 */
-	public function getEnvironment(): ?string
+	public function getEnvironment()
 	{
 		return $this->environment;
 	}
