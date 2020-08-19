@@ -7,7 +7,7 @@
 **PHP:** ^5.6
 
 **Extensions:**
-- [csURL](https://www.php.net/manual/en/book.curl.php)
+- [cURL](https://www.php.net/manual/en/book.curl.php)
 - [JSON](https://www.php.net/book.json)
 - [Stream](https://www.php.net/manual/en/intro.stream.php)
 
