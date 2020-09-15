@@ -39,7 +39,7 @@ class ReportLogFactory
 
 		$log->setHostname(isset($informations['host']) ? $informations['host'] : '');
 		$log->setProtocol(isset($informations['scheme']) ? $informations['scheme'] : 'http');
-		$log->setPort((isset($informations['port']) ? $informations['port'] : ($log->getProtocol()) === 'https' ? 443 : 80));
+		$log->setPort(isset($informations['port']) ? $informations['port'] : (($log->getProtocol()) === 'https' ? 443 : 80));
 
 		$log->setUrl($response->getUrlInformation()['url']);
 		$log->setMethod($response->getMethod());
